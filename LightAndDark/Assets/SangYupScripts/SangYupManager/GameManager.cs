@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance {  get; private set; }
 
-    public GameState CurrentState { get; private set; } = GameState.Playing;
+    public GameState CurrentState { get; private set; } = GameState.Playing; // 현재 게임 상태
 
     private void Awake()
     {
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void SetGameState(GameState newState)
+    public void SetGameState(GameState newState) // 게임 상태 설정
     {
         CurrentState = newState;
 
@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     public void RetryStage()
     {
-        //SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex); // 현재 씬 다시 로드 (재시작)
+        int currentIndex = StageManager.Instance.CurrentStageIndex;
+        StageManager.Instance.LoadStage(currentIndex); // 현재 씬 다시 로드 (재시작)
     }    
 }
