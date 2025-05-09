@@ -17,7 +17,7 @@ public class PuzzleSystem : MonoBehaviour
     public bool shouldAffectGates = true;
     public bool ShouldAffectGates => shouldAffectGates;
 
-    private HashSet<string> activatedSwitches = new HashSet<string>(); // 현재 작동죽인 스위치 타입들을 저장하는 집합 (중복방지)
+    private HashSet<TriggerType> activatedSwitches = new HashSet<TriggerType>(); // 현재 작동죽인 스위치 타입들을 저장하는 집합 (중복방지)
 
     /// <summary>
     /// 싱글턴 인스턴스 초기화
@@ -46,30 +46,6 @@ public class PuzzleSystem : MonoBehaviour
         foreach (var gate in targetGates)
         {
             gate.UpdateGateState(triggerType, isActivated);
-        }
-    }
-
-    /// <summary>
-    /// 퍼즐 클리어 조건 검사
-    /// 모든 TriggerType이 활성화되었을 경우 게이트 개방
-    /// </summary>
-    public void CheckPuzzleClear()
-    {
-        // 모든 enum 타입이 집합에 존재하는지 확인
-        foreach (TriggerType type in System.Enum.GetValues(typeof(TriggerType)))
-        {
-            if (!activatedSwitches.Contains(type.ToString()))
-            {
-                Debug.Log($"{type} 스위치가 아직 꺼져있음 -> 퍼즐 미완료");
-                return;
-            }
-        }
-
-        Debug.Log("모든 스위치가 작동됨! -> 게이트 오픈!");
-
-        foreach (var gate in targetGates)
-        {
-            gate.OpenGate();
         }
     }
 }

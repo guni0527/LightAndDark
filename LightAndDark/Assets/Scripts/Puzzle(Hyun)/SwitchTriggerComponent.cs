@@ -11,7 +11,7 @@ public class SwitchTriggerComponent : MonoBehaviour
 {     
     [SerializeField] private TriggerType triggerType;      
     [SerializeField] private PuzzleSystem puzzleSystem;     
-    [SerializeField] private LiftComtroller liftComtroller;
+    [SerializeField] private LiftController liftComtroller;
 
     private bool isTrigger = false;      
     private bool isActivated = false;    
@@ -49,11 +49,6 @@ public class SwitchTriggerComponent : MonoBehaviour
             puzzleSystem.UpdatePuzzleState(triggerType, isActivated);
         }
 
-        if (liftComtroller != null)
-        {
-            liftComtroller.ActivateLift();
-        }
-
         liftComtroller?.ActivateLift();
     }
 
@@ -67,6 +62,7 @@ public class SwitchTriggerComponent : MonoBehaviour
         if (IsValidPlayer(other))
         {
             isTrigger = true;
+            Debug.Log($"[스위치] {triggerType} 플레이어 진입: {gameObject.name}");
         }
     }
 
@@ -80,6 +76,7 @@ public class SwitchTriggerComponent : MonoBehaviour
         if (IsValidPlayer(other))
         {
             isTrigger = false;
+            Debug.Log($"[스위치] {triggerType} 플레이어 이탈: {gameObject.name}");
         }
     }
 

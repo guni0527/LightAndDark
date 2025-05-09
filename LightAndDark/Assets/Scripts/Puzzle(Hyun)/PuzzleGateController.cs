@@ -40,17 +40,26 @@ public class PuzzleGateController : MonoBehaviour
     /// <param name="triggerType">스위치 타입 (Light / Dark)</param>
     /// <param name="isActivated">해당 스위치가 활성화 되었는지 여부</param>
     public void UpdateGateState(TriggerType triggerType, bool isActivated)
-    {
-        Debug.Log($"[게이트] {gameObject.name} ← {triggerType}: {isActivated}");
-
+    {       
         if (triggerStates.ContainsKey(triggerType))
         {
+            Debug.Log($"[게이트] {gameObject.name} ← {triggerType}: {isActivated}");
+
             triggerStates[triggerType] = isActivated;
+
+            foreach (var kv in triggerStates)
+            {
+                Debug.Log($" - 상태 {kv.Key}: {kv.Value}");
+            }
 
             if (IsConditionMet())
             {
                 Debug.Log($"[게이트 열림 조건 충족]: {gameObject.name}");
                 OpenGate();
+            }
+            else
+            {
+                Debug.Log($"[개이트 열림 조건 불충족] -> 아직 열리지 않음: {gameObject.name}");
             }
         }
     }
