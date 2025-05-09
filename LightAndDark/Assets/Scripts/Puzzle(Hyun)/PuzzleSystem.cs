@@ -11,7 +11,11 @@ public class PuzzleSystem : MonoBehaviour
     public static PuzzleSystem Instance { get; private set; } // 싱글턴 인스턴스
 
     [Header("연동된 퍼즐 게이트들")]
-    [SerializeField] private List<PuzzleGateController> gates; // 퍼즐 클리어 시  열릴 게이트 목록
+    [SerializeField] private List<PuzzleGateController> targetGates; // 퍼즐 클리어 시  열릴 게이트 목록
+
+    [Header("이 퍼즐 시스템이 게이트에 영향을 주는가?")]
+    public bool shouldAffectGates = true;
+    public bool ShouldAffectGates => shouldAffectGates;
 
     private HashSet<string> activatedSwitches = new HashSet<string>(); // 현재 작동죽인 스위치 타입들을 저장하는 집합 (중복방지)
 
@@ -37,22 +41,12 @@ public class PuzzleSystem : MonoBehaviour
     /// </summary>
     /// <param name="type"></param>
     /// <param name="isActivated"></param>
-    public void UpdatePuzzleState(TriggerType type, bool isActivated)
+    public void UpdatePuzzleState(TriggerType triggerType, bool isActivated)
     {
-        string key = type.ToString(); // enum -> 문자열로 변환하여 비교
-
-        if (isActivated)
+        foreach (var gate in targetGates)
         {
-            activatedSwitches.Add(key); // 스위치 ON -> 집합에 추가
+            gate.UpdateGateState(triggerType, isActivated);
         }
-        else
-        {
-            activatedSwitches.Remove(key); // 스위치 OFF -> 집합에서 제거
-        }
-
-        Debug.Log($"스위치 {key} 상태: {(isActivated ? "ON" : "OFF")}");
-
-        CheckPuzzleClear(); // 조건 검사
     }
 
     /// <summary>
@@ -73,7 +67,7 @@ public class PuzzleSystem : MonoBehaviour
 
         Debug.Log("모든 스위치가 작동됨! -> 게이트 오픈!");
 
-        foreach (var gate in gates)
+        foreach (var gate in targetGates)
         {
             gate.OpenGate();
         }

@@ -9,11 +9,12 @@ using UnityEngine.UI;
 /// </summary>
 public class SwitchTriggerComponent : MonoBehaviour
 {     
-    [SerializeField] private TriggerType triggerType;       // 작동 조건이 되는 플레이어 타입 (Light 또는 Dark)
-    [SerializeField] private PuzzleSystem puzzleSystem;     // 퍼즐 상태를 제어할 PuzzleSystem 참조
+    [SerializeField] private TriggerType triggerType;      
+    [SerializeField] private PuzzleSystem puzzleSystem;     
+    [SerializeField] private LiftComtroller liftComtroller;
 
-    private bool isTrigger = false;      // 플레이어가 현재 트리거 범위 안에 있는지 여부
-    private bool isActivated = false;    // 현재 스위치가 활성화 상태인지 여부
+    private bool isTrigger = false;      
+    private bool isActivated = false;    
 
     /// <summary>
     /// 매 프레임마다 입력을 체크하여 트리거 안에 있을 때 H키로 스위치를 작동시킴
@@ -32,10 +33,28 @@ public class SwitchTriggerComponent : MonoBehaviour
     private void ToggleSwitch()
     {
         isActivated = !isActivated;
-        puzzleSystem.UpdatePuzzleState(triggerType, isActivated);
+        Debug.Log($"[스위치] {gameObject.name} - {triggerType} -> {(isActivated ? "ON" : "OFF")}");
 
-        // TODO: 이펙트 or 사운드 실행
-        // AudioSource.Play(), Animator.SetTrigger("Activate") 등
+        if (puzzleSystem == null)
+        {
+            Debug.Log("[확인] puzzleSystem == null (퍼즐 영향 없음)");
+        }
+        else
+        {
+            Debug.Log("주의 puzzleSystem 연결됨! -> 퍼즐에 영향 줄 수 있음");
+        }
+
+        if (puzzleSystem != null && puzzleSystem.ShouldAffectGates)
+        {
+            puzzleSystem.UpdatePuzzleState(triggerType, isActivated);
+        }
+
+        if (liftComtroller != null)
+        {
+            liftComtroller.ActivateLift();
+        }
+
+        liftComtroller?.ActivateLift();
     }
 
     /// <summary>
