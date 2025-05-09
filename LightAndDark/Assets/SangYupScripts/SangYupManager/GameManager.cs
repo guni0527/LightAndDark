@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
             case GameState.StageClear:
                 Debug.Log("스테이지 클리어");
-                //StageManager.Instance.UnlockNextStage(); // 다음 스테이지 해금
+                StageManager.Instance.UnlockNextStage(); // 다음 스테이지 해금
                 break;
             case GameState.StageFail:
                 Debug.Log("스테이지 실패");
@@ -42,6 +42,6 @@ public class GameManager : MonoBehaviour
 
     public void RetryStage()
     {
-        //SceneManager.LoadScene(UnityEngine.SceneManagment.SceneManager.GetActiveScene().buildIndex); // 현재 씬 다시 로드 (재시작)
+        //SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex); // 현재 씬 다시 로드 (재시작)
     }    
 }
