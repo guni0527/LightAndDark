@@ -8,12 +8,12 @@ using UnityEngine;
 /// </summary>
 public class PuzzleSystem : MonoBehaviour
 {
-    public static PuzzleSystem Instance { get; private set; }
+    public static PuzzleSystem Instance { get; private set; } // 싱글턴 인스턴스
 
     [Header("연동된 퍼즐 게이트들")]
-    [SerializeField] private List<PuzzleGateController> gates;
+    [SerializeField] private List<PuzzleGateController> gates; // 퍼즐 클리어 시  열릴 게이트 목록
 
-    private HashSet<string> activatedSwitches = new HashSet<string>();
+    private HashSet<string> activatedSwitches = new HashSet<string>(); // 현재 작동죽인 스위치 타입들을 저장하는 집합 (중복방지)
 
     /// <summary>
     /// 싱글턴 인스턴스 초기화
@@ -27,42 +27,55 @@ public class PuzzleSystem : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // 중복 방지
         }
     }
 
     /// <summary>
-    /// 스위치에서 퍼즐 입력을 수신하여 상태를 갱신하고 조건 확인
-    /// 중복 입력은 무시
+    /// 외부에서 스위치 상태가 변경될 때 호출됨
+    /// 스위치의 활성/비활성 상태에 따라 내부 상태를 업데이트하고 퍼즐 조건 검사 수행
     /// </summary>
     /// <param name="type"></param>
-    public void TriggerFromSwitch(string type)
+    /// <param name="isActivated"></param>
+    public void UpdatePuzzleState(TriggerType type, bool isActivated)
     {
-        if (activatedSwitches.Contains(type))
+        string key = type.ToString(); // enum -> 문자열로 변환하여 비교
+
+        if (isActivated)
         {
-            return;
+            activatedSwitches.Add(key); // 스위치 ON -> 집합에 추가
+        }
+        else
+        {
+            activatedSwitches.Remove(key); // 스위치 OFF -> 집합에서 제거
         }
 
-        activatedSwitches.Add(type);
-        Debug.Log($"스위치 입력: {type}");
+        Debug.Log($"스위치 {key} 상태: {(isActivated ? "ON" : "OFF")}");
 
-        CheckPuzzleClear();
+        CheckPuzzleClear(); // 조건 검사
     }
 
     /// <summary>
     /// 퍼즐 클리어 조건 검사
-    /// 모든 조건이 충족되면 연결된 게이트들을 개방
+    /// 모든 TriggerType이 활성화되었을 경우 게이트 개방
     /// </summary>
     public void CheckPuzzleClear()
     {
-        if (activatedSwitches.Contains("Light") && activatedSwitches.Contains("Dark"))
+        // 모든 enum 타입이 집합에 존재하는지 확인
+        foreach (TriggerType type in System.Enum.GetValues(typeof(TriggerType)))
         {
-            Debug.Log("모든 스위치가 작동됨! -> 게임트 오픈");
-
-            foreach (var gate in gates)
+            if (!activatedSwitches.Contains(type.ToString()))
             {
-                gate.OpenGate();
+                Debug.Log($"{type} 스위치가 아직 꺼져있음 -> 퍼즐 미완료");
+                return;
             }
-        }      
+        }
+
+        Debug.Log("모든 스위치가 작동됨! -> 게이트 오픈!");
+
+        foreach (var gate in gates)
+        {
+            gate.OpenGate();
+        }
     }
 }
