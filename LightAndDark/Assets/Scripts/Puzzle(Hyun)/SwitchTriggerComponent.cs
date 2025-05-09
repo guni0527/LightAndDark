@@ -20,7 +20,7 @@ public class SwitchTriggerComponent : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (isTrigger && Input.GetKeyDown(KeyCode.H))
+        if (isTrigger && Input.GetKeyDown(KeyCode.Space))
         {
             ToggleSwitch();
         }
