@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
@@ -10,7 +11,7 @@ public class ScoreManager : MonoBehaviour
     {
         CheckLevelClear();
         CheckTimeLimit();
-        Check();
+        CheckItemGet();
     }
 
     public void CheckLevelClear() // 스테이지 클리어 시 지급되는 점수
@@ -26,9 +27,9 @@ public class ScoreManager : MonoBehaviour
         Score += 1; 
     }
 
-    public void Check() // 3번째 조건
+    public void CheckItemGet() // 맵에서 아이템을 획득했을 때 지급되는 점수
     {
-        //IF (3번째 조건)
+        //IF (아이템을 먹어서 그 스테이지 아이템 획득 bool 값이 true라면)
         Score += 1;
     }
 
