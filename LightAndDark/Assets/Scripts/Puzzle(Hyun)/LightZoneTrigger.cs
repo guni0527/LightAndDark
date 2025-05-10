@@ -13,4 +13,13 @@ public class LightZoneTrigger : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("LightPlayer"))
+        {
+            Debug.Log("빛 캐릭터가 전등 범위를 벗어나 사망");
+            Destroy(other.gameObject);
+        }
+    }
 }
