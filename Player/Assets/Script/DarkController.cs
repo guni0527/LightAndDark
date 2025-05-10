@@ -11,7 +11,7 @@ public class DarkController : MonoBehaviour
     public Sprite moveSprite;    //동일
     public Sprite jumpSprite;    //동일
 
-    private Rigidbody2D rb;//리기드바디
+    private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private bool isGrounded;
 
