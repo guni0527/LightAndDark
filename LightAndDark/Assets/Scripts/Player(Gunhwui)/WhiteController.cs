@@ -28,18 +28,18 @@ public class WhiteController : MonoBehaviour
 
         rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
 
-        // 방향 전환
+        //방향 전환 할때 그림이 움직이도록 해줌
         if (move != 0)
             spriteRenderer.flipX = move < 0;
 
-        // 점프
+        //점프를 담당해줌
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isGrounded = false;
         }
 
-        // 스프라이트 상태 변경 //여기가 진심 wrkxdma
+        //땅에 닿았거나 아닐때 모션이랑 걸어다닐때 나오는 모션 해주는거 //여기가 진심 wrkxdma
         if (!isGrounded)
         {
             spriteRenderer.sprite = jumpSprite;
