@@ -10,6 +10,7 @@ public class DarkController : MonoBehaviour
     public Sprite idleSprite;   //스프라이트 불러오는거
     public Sprite moveSprite;   //동일
     public Sprite jumpSprite;   //동일
+    public Sprite dieSprite;    //동일
 
     private Rigidbody2D rb;     //리기드바디
     private SpriteRenderer spriteRenderer;
@@ -28,11 +29,22 @@ public class DarkController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow)) move = -1f;//x값 줄여줌으로써 왼쪽으로 감
         if (Input.GetKey(KeyCode.RightArrow)) move = 1f;//x값 늘려줌으로써 왼쪽으로 감
 
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            spriteRenderer.sprite = dieSprite;
+            rb.velocity = Vector2.zero; //누워있을때 움직이지 않게해줌
+            return;
+        }
+
+
+
+
         rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
 
         //방향 전환 할때 그림이 움직이도록 해줌
         if (move != 0)
             spriteRenderer.flipX = move < 0;
+
 
         //점프를 담당해줌
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)

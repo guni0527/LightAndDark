@@ -928,6 +928,7 @@ MonoBehaviour:
   idleSprite: {fileID: 21300000, guid: a238df3e82d7c7a4e83fc742f1f3e0e6, type: 3}
   moveSprite: {fileID: 21300000, guid: e04074280ca89c54d8189fab3c8a054e, type: 3}
   jumpSprite: {fileID: 21300000, guid: 6147ed640156773459ea94bc2266b379, type: 3}
+  dieSprite: {fileID: 21300000, guid: 2c6ac08ce5ebe884a9a9140ec8f3effc, type: 3}
 --- !u!4 &3702713572942621184
 Transform:
   m_ObjectHideFlags: 0
