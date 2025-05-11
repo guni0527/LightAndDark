@@ -18,18 +18,28 @@ public class StageManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    private void Start()
-    {
-        LoadStage(currentStageIndex); // 게임 시작 시 현재 스테이지 로드
-    }
-
     public void LoadStage(int index) // 지정된 인덱스의 스테이지를 로드
     {
+        if (!StageUnlockSystem.Instance.IsStageUnlocked(index))
+        {
+            Debug.LogWarning($"스테이지 {index}는 해금되지 않았습니다.");
+            return;
+        }
+
         if (index < 0 || index >= stageList.Count)
         {
             Debug.LogError("잘못된 스테이지 인덱스");
             return;
         }
+
+        string sceneToLoad = stageList[index].sceneName;
+
+        if (SceneManager.GetActiveScene().name == sceneToLoad)
+        {
+            Debug.Log("현재 씬과 동일하여 로드 생략");
+            return;
+        }
+
         currentStageIndex = index;
         StageData data = stageList[index];
         Debug.Log($"스테이지 {index} 시작 : {data.sceneName}");
@@ -37,11 +47,14 @@ public class StageManager : MonoBehaviour
         SceneManager.LoadScene(data.sceneName); // 해당 스테이지 씬 로드
     }
 
-    public void UnlockNextStage() // 다음 스테이지 해금 및 로드
+    public void UnlockNextStage() // 다음 스테이지 언락 및 로드
     {
         if (currentStageIndex + 1 < stageList.Count)
         {
             currentStageIndex++;
+
+            StageUnlockSystem.Instance.UnlockStage(currentStageIndex); // StageUnlockSystem에 저장 (PlayerPrefs에도 저장됨)
+
             LoadStage(currentStageIndex); // 다음 스테이지 로드
         }
         else
