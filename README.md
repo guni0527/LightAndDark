@@ -11,6 +11,7 @@ TeamProject
 🧭 20조 트러블슈팅 정리 (Troubleshooting Log)
 
 ✅ [1] 퍼즐 스위치 → 퍼즐 게이트 연동 오류
+
 ⚠️ 문제점
 - Light 스위치만 작동해도 퍼즐 게이트가 열리는 문제 발생
 - Dark 스위치 조건이 무시됨
