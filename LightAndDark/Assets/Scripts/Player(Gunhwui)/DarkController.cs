@@ -4,44 +4,44 @@ using UnityEngine;
 
 public class DarkController : MonoBehaviour
 {
-    public float moveSpeed = 5f;//¼Óµµ ±âº»°ª
-    public float jumpForce = 7f;//Á¡ÇÁ·Â ±âº»°ª
+    public float moveSpeed = 5f;//ì†ë„ ê¸°ë³¸ê°’
+    public float jumpForce = 7f;//ì í”„ë ¥ ê¸°ë³¸ê°’
 
-    public Sprite idleSprite;   //½ºÇÁ¶óÀÌÆ® ºÒ·¯¿À´Â°Å
-    public Sprite moveSprite;    //µ¿ÀÏ
-    public Sprite jumpSprite;    //µ¿ÀÏ
+    public Sprite idleSprite;   //ìŠ¤í”„ë¼ì´íŠ¸ ë¶ˆëŸ¬ì˜¤ëŠ”ê±°
+    public Sprite moveSprite;    //ë™ì¼
+    public Sprite jumpSprite;    //ë™ì¼
 
-    private Rigidbody2D rb;//¸®±âµå¹Ùµğ
+    private Rigidbody2D rb;//ë¦¬ê¸°ë“œë°”ë””
     private SpriteRenderer spriteRenderer;
     private bool isGrounded;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>(); // ÀÚ½Ä¿¡ ÀÖÀ» °æ¿ì
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>(); // ìì‹ì— ìˆì„ ê²½ìš°
     }
 
     void Update()
     {
         float move = 0f;
-        //Å° ÀÔ·Â       Å° ¹Ù²Ü¶§ ¿©±â ¼öÁ¤ 
-        if (Input.GetKey(KeyCode.LeftArrow)) move = -1f;//x°ª ÁÙ¿©ÁÜÀ¸·Î½á ¿ŞÂÊÀ¸·Î °¨
-        if (Input.GetKey(KeyCode.RightArrow)) move = 1f;//x°ª ´Ã·ÁÁÜÀ¸·Î½á ¿ŞÂÊÀ¸·Î °¨
+        //í‚¤ ì…ë ¥       í‚¤ ë°”ê¿€ë•Œ ì—¬ê¸° ìˆ˜ì • 
+        if (Input.GetKey(KeyCode.LeftArrow)) move = -1f;//xê°’ ì¤„ì—¬ì¤Œìœ¼ë¡œì¨ ì™¼ìª½ìœ¼ë¡œ ê°
+        if (Input.GetKey(KeyCode.RightArrow)) move = 1f;//xê°’ ëŠ˜ë ¤ì¤Œìœ¼ë¡œì¨ ì™¼ìª½ìœ¼ë¡œ ê°
 
         rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
 
-        // ¹æÇâ ÀüÈ¯
+        // ë°©í–¥ ì „í™˜
         if (move != 0)
             spriteRenderer.flipX = move < 0;
 
-        // Á¡ÇÁ
+        // ì í”„
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isGrounded = false;
         }
 
-        // ½ºÇÁ¶óÀÌÆ® »óÅÂ º¯°æ tlqkf
+        // ìŠ¤í”„ë¼ì´íŠ¸ ìƒíƒœ ë³€ê²½ tlqkf
         if (!isGrounded)
         {
             spriteRenderer.sprite = jumpSprite;
