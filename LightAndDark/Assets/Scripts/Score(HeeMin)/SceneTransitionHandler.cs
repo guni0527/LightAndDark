@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransitionHandler : MonoBehaviour
 {
+    StageData stageData;
+    private string targetScene;
+
+    void Start()
+    {
+        targetScene = stageData.sceneName;
+    }
+
     public void MainScene() // 메인 화면으로 이동하기
     {
         SceneManager.LoadScene("MainScene");
@@ -16,35 +24,10 @@ public class SceneTransitionHandler : MonoBehaviour
     }
 
 
-    public void StageScene1() // 1번 스테이지로 이동하기
+    public void StageScene() // 지정된 스테이지로 이동하기
     {
-        SceneManager.LoadScene("StageScene1");
+        SceneManager.LoadScene(targetScene);
     }
-
-
-    public void StageScene2() // 2번 스테이지로 이동하기
-    {
-        SceneManager.LoadScene("StageScene2");
-    }
-
-
-    public void StageScene3() // 3번 스테이지로 이동하기
-    {
-        SceneManager.LoadScene("StageScene3");
-    }
-
-
-    public void StageScene4() // 4번 스테이지로 이동하기
-    {
-        SceneManager.LoadScene("StageScene4");
-    }
-
-
-    public void StageScene5() // 5번 스테이지로 이동하기
-    {
-        SceneManager.LoadScene("StageScene5");
-    }
-
 
     public void StageClearScene() // 스테이지 클리어 씬 이동하기
     {
