@@ -25,7 +25,7 @@ public class WhiteController : MonoBehaviour
         if (isDead)
             return;
 
-        Debug.Log("Update 실행 중");
+        
 
         if (Input.GetKeyDown(KeyCode.K))
         {
