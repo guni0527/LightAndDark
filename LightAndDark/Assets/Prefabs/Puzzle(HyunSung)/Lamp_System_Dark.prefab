@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 752648317658796426}
   m_Layer: 0
-  m_Name: Lamp_Switch Set_Dark
+  m_Name: Lamp_System_Dark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
