@@ -441,10 +441,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'WhitePlayer '
       objectReference: {fileID: 0}
-    - target: {fileID: 520936737298833205, guid: 008920d4789298b4c8aa77a7a2071517, type: 3}
-      propertyPath: m_TagString
-      value: LightPlayer
-      objectReference: {fileID: 0}
     - target: {fileID: 5019982742383432927, guid: 008920d4789298b4c8aa77a7a2071517, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.54
@@ -1162,10 +1158,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DarkPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 8115165251306440924, guid: 13bcdc58497e26e4684818f862cff552, type: 3}
-      propertyPath: m_TagString
-      value: DarkPlayer
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1776,6 +1768,10 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
       value: -0.8726688
       objectReference: {fileID: 0}
+    - target: {fileID: 7856241002738144884, guid: bfe1ef20d0bd0304985c80b05765ad08, type: 3}
+      propertyPath: darkDieSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2c6ac08ce5ebe884a9a9140ec8f3effc, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

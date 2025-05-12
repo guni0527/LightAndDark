@@ -7,7 +7,7 @@ public class StageTestController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D)) // ½ºÅ×ÀÌÁö Å¬¸®¾î Å×½ºÆ®
+        if (Input.GetKeyDown(KeyCode.E)) // ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´ í…ŒìŠ¤íŠ¸
         {
             if (GameManager.Instance != null)
             {
@@ -15,11 +15,11 @@ public class StageTestController : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("GameManager ÀÎ½ºÅÏ½º°¡ ¾ø½À´Ï´Ù.");
+                Debug.LogWarning("GameManager ì¸ìŠ¤í„´ìŠ¤ê°€ ì—†ìŠµë‹ˆë‹¤.");
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R)) // ½ºÅ×ÀÌÁö ½ÇÆĞ ÈÄ Àç½ÃÀÛ Å×½ºÆ®
+        if (Input.GetKeyDown(KeyCode.R)) // ìŠ¤í…Œì´ì§€ ì‹¤íŒ¨ í›„ ì¬ì‹œì‘ í…ŒìŠ¤íŠ¸
         {
             if (GameManager.Instance != null)
             {
@@ -28,7 +28,7 @@ public class StageTestController : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("GameManager ÀÎ½ºÅÏ½º°¡ ¾ø½À´Ï´Ù.");
+                Debug.LogWarning("GameManager ì¸ìŠ¤í„´ìŠ¤ê°€ ì—†ìŠµë‹ˆë‹¤.");
             }
         }
     }
