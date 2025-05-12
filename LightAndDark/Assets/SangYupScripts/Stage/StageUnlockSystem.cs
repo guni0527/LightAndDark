@@ -35,7 +35,7 @@ public class StageUnlockSystem : MonoBehaviour
         if (!unlockedStages.Contains(stageIndex))
         {
             unlockedStages.Add(stageIndex);
-            PlayerPrefs.SetInt("UnlockedStageCount", unlockedStages.Count);
+            PlayerPrefs.SetInt("UnlockedStageCount", unlockedStages.Count); // 해금 스테이지 수 저장
             PlayerPrefs.Save();
         }
     }

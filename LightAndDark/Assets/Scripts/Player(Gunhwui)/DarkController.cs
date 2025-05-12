@@ -7,18 +7,19 @@ public class DarkController : MonoBehaviour
     public float moveSpeed = 5f;//속도 기본값
     public float jumpForce = 7f;//점프력 기본값
 
-    public Sprite idleSprite;   //스프라이트 불러오는거
-    public Sprite moveSprite;    //동일
-    public Sprite jumpSprite;    //동일
+    public Sprite idleSprite;   //��������Ʈ �ҷ����°�
+    public Sprite moveSprite;   //����
+    public Sprite jumpSprite;   //����
+    public Sprite dieSprite;    //����
 
-    private Rigidbody2D rb;//리기드바디
+    private Rigidbody2D rb;     //�����ٵ�
     private SpriteRenderer spriteRenderer;
     private bool isGrounded;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>(); // 자식에 있을 경우
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>(); //�ڽĿ� ���� ���
     }
 
     void Update()
@@ -28,20 +29,31 @@ public class DarkController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow)) move = -1f;//x값 줄여줌으로써 왼쪽으로 감
         if (Input.GetKey(KeyCode.RightArrow)) move = 1f;//x값 늘려줌으로써 왼쪽으로 감
 
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            spriteRenderer.sprite = dieSprite;
+            rb.velocity = Vector2.zero; //���������� �������� �ʰ�����
+            return;
+        }
+
+
+
+
         rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
 
-        // 방향 전환
+        //���� ��ȯ �Ҷ� �׸��� �����̵��� ����
         if (move != 0)
             spriteRenderer.flipX = move < 0;
 
-        // 점프
+
+        //������ �������
         if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isGrounded = false;
         }
 
-        // 스프라이트 상태 변경 tlqkf
+        //���� ��Ұų� �ƴҶ� ����̶� �ɾ�ٴҶ� ������ ��� ���ִ°�
         if (!isGrounded)
         {
             spriteRenderer.sprite = jumpSprite;

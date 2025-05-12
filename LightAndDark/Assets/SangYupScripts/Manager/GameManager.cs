@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,8 +18,23 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this; // 싱글톤 패턴 적용 중복 인스턴스 방지
-        else Destroy(gameObject);
+        if (Instance == null)
+        {
+            Instance = this; // 싱글톤 패턴 적용 중복 인스턴스 방지
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "SangYupScene")
+        {
+
+        }
     }
 
     public void SetGameState(GameState newState) // 게임 상태 설정
@@ -43,6 +59,8 @@ public class GameManager : MonoBehaviour
     public void RetryStage()
     {
         int currentIndex = StageManager.Instance.CurrentStageIndex;
-        StageManager.Instance.LoadStage(currentIndex); // 현재 씬 다시 로드 (재시작)
+        string currentSceneName = StageManager.Instance.GetCurrentStageSceneName(); // 현재 씬 이름 가져오기
+
+        SceneManager.LoadScene(currentSceneName); // 해당 씬 다시 로드 (재시작)
     }    
 }
