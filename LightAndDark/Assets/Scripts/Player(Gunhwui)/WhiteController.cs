@@ -2,22 +2,25 @@ using UnityEngine;
 
 public class WhiteController : MonoBehaviour
 {
-    public float moveSpeed = 5f;//속도 기본값
-    public float jumpForce = 7f;//점프력 기본값
+    [SerializeField] private float moveSpeed = 5f;//속도 기본값
+    [SerializeField] private float jumpForce = 7f;//점프력 기본값
 
-    public Sprite idleSprite; //스프라이트 불러오는거
-    public Sprite moveSprite; //동일
-    public Sprite jumpSprite; //동일
-    public Sprite dieSprite;  //동일
+    [SerializeField] private Sprite idleSprite; //스프라이트 불러오는거
+    [SerializeField] private Sprite moveSprite; //동일
+    [SerializeField] private Sprite jumpSprite; //동일
+    [SerializeField] private Sprite dieSprite;  //동일
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private bool isGrounded;
     private bool isDead = false;
+    private WhiteDeathHandler deathHandler;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        deathHandler = GetComponent<WhiteDeathHandler>();
     }
 
     void Update()
@@ -88,5 +91,10 @@ public class WhiteController : MonoBehaviour
         rb.velocity = Vector2.zero;
         spriteRenderer.sprite = dieSprite;
         Debug.Log("WhiteController: 사망처리됨");
+
+        if (deathHandler != null)
+        {
+            deathHandler.TriggerDeath();
+        }
     }
 }

@@ -43,8 +43,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2526823023515176909, guid: 8363f0f1a5d5e364ba7acce8f530f1ff, type: 3}
       propertyPath: m_Name
-      value: LightSwitch_Dark_1
+      value: LightSwitch_Dark
       objectReference: {fileID: 0}
+    - target: {fileID: 4336621981994778108, guid: 8363f0f1a5d5e364ba7acce8f530f1ff, type: 3}
+      propertyPath: targetZone
+      value: 
+      objectReference: {fileID: 5687096194563284374}
     - target: {fileID: 6466858525805239627, guid: 8363f0f1a5d5e364ba7acce8f530f1ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.334
@@ -161,3 +165,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6640376227283640252, guid: c4036a44472bc41469259c821fa208e1, type: 3}
   m_PrefabInstance: {fileID: 7675857028215077964}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5687096194563284374 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2624051123104408026, guid: c4036a44472bc41469259c821fa208e1, type: 3}
+  m_PrefabInstance: {fileID: 7675857028215077964}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e3c95553a647a419cb80da927f6f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
