@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7856241002738144884}
   - component: {fileID: 5681647415040015253}
   m_Layer: 3
-  m_Name: LightZone_Light
+  m_Name: LightZone_White
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
