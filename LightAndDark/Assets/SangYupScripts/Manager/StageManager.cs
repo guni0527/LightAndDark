@@ -7,28 +7,37 @@ public class StageManager : MonoBehaviour
 {
     public static StageManager Instance { get; private set; }
 
-    [SerializeField] private int currentStageIndex; // ÇöÀç ½ºÅ×ÀÌÁö ÀÎµ¦½º
-    public int CurrentStageIndex => currentStageIndex; // ¿ÜºÎ¿¡¼­ ÀĞ±â Àü¿ëÀ¸·Î Á¢±Ù
+    [SerializeField] private int currentStageIndex; // í˜„ì¬ ìŠ¤í…Œì´ì§€ ì¸ë±ìŠ¤
+    public int CurrentStageIndex => currentStageIndex; // ì™¸ë¶€ì—ì„œ ì½ê¸° ì „ìš©ìœ¼ë¡œ ì ‘ê·¼
 
-    [SerializeField] private List<StageData> stageList; // ½ºÅ×ÀÌÁö µ¥ÀÌÅÍ ¸ñ·Ï
+    [SerializeField] private List<StageData> stageList; // ìŠ¤í…Œì´ì§€ ë°ì´í„° ëª©ë¡
+
+    public List<StageData> StageList => stageList;
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    public void LoadStage(int index) // ÁöÁ¤µÈ ÀÎµ¦½ºÀÇ ½ºÅ×ÀÌÁö¸¦ ·Îµå
+    public void LoadStage(int index) // ì§€ì •ëœ ì¸ë±ìŠ¤ì˜ ìŠ¤í…Œì´ì§€ë¥¼ ë¡œë“œ
     {
         if (!StageUnlockSystem.Instance.IsStageUnlocked(index))
         {
-            Debug.LogWarning($"½ºÅ×ÀÌÁö {index}´Â ÇØ±İµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+            Debug.LogWarning($"ìŠ¤í…Œì´ì§€ {index}ëŠ” í•´ê¸ˆë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
             return;
         }
 
         if (index < 0 || index >= stageList.Count)
         {
-            Debug.LogError("Àß¸øµÈ ½ºÅ×ÀÌÁö ÀÎµ¦½º");
+            Debug.LogError("ì˜ëª»ëœ ìŠ¤í…Œì´ì§€ ì¸ë±ìŠ¤");
             return;
         }
 
@@ -36,39 +45,39 @@ public class StageManager : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == sceneToLoad)
         {
-            Debug.Log("ÇöÀç ¾À°ú µ¿ÀÏÇÏ¿© ·Îµå »ı·«");
+            Debug.Log("í˜„ì¬ ì”¬ê³¼ ë™ì¼í•˜ì—¬ ë¡œë“œ ìƒëµ");
             return;
         }
 
         currentStageIndex = index;
         StageData data = stageList[index];
-        Debug.Log($"½ºÅ×ÀÌÁö {index} ½ÃÀÛ : {data.sceneName}");
+        Debug.Log($"ìŠ¤í…Œì´ì§€ {index} ì‹œì‘ : {data.sceneName}");
 
-        SceneManager.LoadScene(data.sceneName); // ÇØ´ç ½ºÅ×ÀÌÁö ¾À ·Îµå
+        SceneManager.LoadScene(data.sceneName); // í•´ë‹¹ ìŠ¤í…Œì´ì§€ ì”¬ ë¡œë“œ
     }
 
-    public void UnlockNextStage() // ´ÙÀ½ ½ºÅ×ÀÌÁö ¾ğ¶ô ¹× ·Îµå
+    public void UnlockNextStage() // ë‹¤ìŒ ìŠ¤í…Œì´ì§€ ì–¸ë½ ë° ë¡œë“œ
     {
         if (currentStageIndex + 1 < stageList.Count)
         {
             currentStageIndex++;
 
-            StageUnlockSystem.Instance.UnlockStage(currentStageIndex); // StageUnlockSystem¿¡ ÀúÀå (PlayerPrefs¿¡µµ ÀúÀåµÊ)
+            StageUnlockSystem.Instance.UnlockStage(currentStageIndex); // StageUnlockSystemì— ì €ì¥ (PlayerPrefsì—ë„ ì €ì¥ë¨)
 
-            LoadStage(currentStageIndex); // ´ÙÀ½ ½ºÅ×ÀÌÁö ·Îµå
+            LoadStage(currentStageIndex); // ë‹¤ìŒ ìŠ¤í…Œì´ì§€ ë¡œë“œ
         }
         else
         {
-            Debug.Log("¸ğµç ½ºÅ×ÀÌÁö Å¬¸®¾î");
-            GameManager.Instance.SetGameState(GameManager.GameState.StageClear); // °ÔÀÓ Å¬¸®¾î
+            Debug.Log("ëª¨ë“  ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´");
+            GameManager.Instance.SetGameState(GameManager.GameState.StageClear); // ê²Œì„ í´ë¦¬ì–´
         }
     }
 
-    public string GetCurrentStageSceneName() // ÇöÀç ½ºÅ×ÀÌÁöÀÇ ¾À ÀÌ¸§ ¹İÈ¯
+    public string GetCurrentStageSceneName() // í˜„ì¬ ìŠ¤í…Œì´ì§€ì˜ ì”¬ ì´ë¦„ ë°˜í™˜
     {
         if (currentStageIndex < 0 || currentStageIndex >= stageList.Count)
         {
-            Debug.LogError("ÇöÀç ½ºÅ×ÀÌÁö ÀÎµ¦½º°¡ Àß¸øµÇ¾ú½À´Ï´Ù.");
+            Debug.LogError("í˜„ì¬ ìŠ¤í…Œì´ì§€ ì¸ë±ìŠ¤ê°€ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.");
             return "";
         }
         return stageList[currentStageIndex].sceneName;
