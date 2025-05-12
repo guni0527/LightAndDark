@@ -46,4 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetGates:
   - {fileID: 0}
+  - {fileID: 0}
   shouldAffectGates: 1
