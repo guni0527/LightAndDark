@@ -401,6 +401,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'WhitePlayer '
       objectReference: {fileID: 0}
+    - target: {fileID: 520936737298833205, guid: 008920d4789298b4c8aa77a7a2071517, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4979561101708052001, guid: 008920d4789298b4c8aa77a7a2071517, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5019982742383432927, guid: 008920d4789298b4c8aa77a7a2071517, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.54
@@ -444,10 +452,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 520936737298833205, guid: 008920d4789298b4c8aa77a7a2071517, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2081959801}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 008920d4789298b4c8aa77a7a2071517, type: 3}
 --- !u!1001 &1106806947
 PrefabInstance:
@@ -1126,25 +1131,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13bcdc58497e26e4684818f862cff552, type: 3}
---- !u!1 &2081959796 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 520936737298833205, guid: 008920d4789298b4c8aa77a7a2071517, type: 3}
-  m_PrefabInstance: {fileID: 1012214791}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2081959801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2081959796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 254f265a28834eb40bb06c9e4f79c716, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathEffectPrefab: {fileID: 0}
-  dissolveMaterial: {fileID: 0}
 --- !u!1001 &2642131879833167233
 PrefabInstance:
   m_ObjectHideFlags: 0

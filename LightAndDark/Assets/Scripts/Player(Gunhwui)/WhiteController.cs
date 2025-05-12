@@ -14,13 +14,11 @@ public class WhiteController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isGrounded;
     private bool isDead = false;
-    private WhiteDeathHandler deathHandler;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        deathHandler = GetComponent<WhiteDeathHandler>();
     }
 
     void Update()
@@ -91,10 +89,5 @@ public class WhiteController : MonoBehaviour
         rb.velocity = Vector2.zero;
         spriteRenderer.sprite = dieSprite;
         Debug.Log("WhiteController: 사망처리됨");
-
-        if (deathHandler != null)
-        {
-            deathHandler.TriggerDeath();
-        }
     }
 }
