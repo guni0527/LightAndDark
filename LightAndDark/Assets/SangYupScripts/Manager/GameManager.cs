@@ -7,20 +7,21 @@ public class GameManager : MonoBehaviour
 {
     public enum GameState
     {
-        Playing,        // ÇöÀç ½ºÅ×ÀÌÁö ÇÃ·¹ÀÌ Áß
-        StageClear,     // ½ºÅ×ÀÌÁö Å¬¸®¾î
-        StageFail,      // ½ÇÆĞ (½Ã°£ ÃÊ°ú, Ä³¸¯ÅÍ »ç¸Á µî)
+        Playing,        // í˜„ì¬ ìŠ¤í…Œì´ì§€ í”Œë ˆì´ ì¤‘
+        StageClear,     // ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´
+        StageFail,      // ì‹¤íŒ¨ (ì‹œê°„ ì´ˆê³¼, ìºë¦­í„° ì‚¬ë§ ë“±)
+        GameOver        // ìºë¦­í„° ì‚¬ë§ í›„ ì—°ì¶œ í¬í•¨ ê²Œì„ ì˜¤ë²„ ìƒíƒœ
     }
 
     public static GameManager Instance {  get; private set; }
 
-    public GameState CurrentState { get; private set; } = GameState.Playing; // ÇöÀç °ÔÀÓ »óÅÂ
+    public GameState CurrentState { get; private set; } = GameState.Playing; // í˜„ì¬ ê²Œì„ ìƒíƒœ
 
     private void Awake()
     {
         if (Instance == null)
         {
-            Instance = this; // ½Ì±ÛÅæ ÆĞÅÏ Àû¿ë Áßº¹ ÀÎ½ºÅÏ½º ¹æÁö
+            Instance = this; // ì‹±ê¸€í†¤ íŒ¨í„´ ì ìš© ì¤‘ë³µ ì¸ìŠ¤í„´ìŠ¤ ë°©ì§€
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetGameState(GameState newState) // °ÔÀÓ »óÅÂ ¼³Á¤
+    public void SetGameState(GameState newState) // ê²Œì„ ìƒíƒœ ì„¤ì •
     {
         CurrentState = newState;
 
@@ -47,20 +48,37 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.StageClear:
-                Debug.Log("½ºÅ×ÀÌÁö Å¬¸®¾î");
-                StageManager.Instance.UnlockNextStage(); // ´ÙÀ½ ½ºÅ×ÀÌÁö ÇØ±İ
+                Debug.Log("ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´");
+                StageManager.Instance.UnlockNextStage(); // ë‹¤ìŒ ìŠ¤í…Œì´ì§€ í•´ê¸ˆ
                 break;
             case GameState.StageFail:
-                Debug.Log("½ºÅ×ÀÌÁö ½ÇÆĞ");
+                Debug.Log("ìŠ¤í…Œì´ì§€ ì‹¤íŒ¨");
+                SetGameState(GameState.GameOver); // ì‹¤íŒ¨ ì‹œ ê²Œì„ì˜¤ë²„ ìƒíƒœ
+                break;
+            case GameState.GameOver:
+                Debug.Log("ê²Œì„ ì˜¤ë²„"); // ì‹¤ì œ ê²Œì„ ì˜¤ë²„ ì²˜ë¦¬ ìˆ˜í–‰
+                HandleGameOver();       // ìºë¦­í„° ì‚¬ë§ ì• ë‹ˆë©”ì´ì…˜ ì²˜ë¦¬
                 break;
         }
+    }
+
+    private void HandleGameOver() // ìºë¦­í„° ì‚¬ë§ ì²˜ë¦¬ í•¨ìˆ˜
+    {
+        DarkController dark = FindObjectOfType<DarkController>();
+        WhiteController white = FindObjectOfType<WhiteController>();
+
+        if (dark != null)
+            dark.DarkDie(); // Dark ìºë¦­í„° ì‚¬ë§ ì²˜ë¦¬
+
+        if (white != null)
+            white.LightDie(); // White ìºë¦­í„° ì‚¬ë§ ì²˜ë¦¬
     }
 
     public void RetryStage()
     {
         int currentIndex = StageManager.Instance.CurrentStageIndex;
-        string currentSceneName = StageManager.Instance.GetCurrentStageSceneName(); // ÇöÀç ¾À ÀÌ¸§ °¡Á®¿À±â
+        string currentSceneName = StageManager.Instance.GetCurrentStageSceneName(); // í˜„ì¬ ì”¬ ì´ë¦„ ê°€ì ¸ì˜¤ê¸°
 
-        SceneManager.LoadScene(currentSceneName); // ÇØ´ç ¾À ´Ù½Ã ·Îµå (Àç½ÃÀÛ)
+        SceneManager.LoadScene(currentSceneName); // í•´ë‹¹ ì”¬ ë‹¤ì‹œ ë¡œë“œ (ì¬ì‹œì‘)
     }    
 }
