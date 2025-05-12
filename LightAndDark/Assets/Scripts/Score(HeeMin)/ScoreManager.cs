@@ -2,24 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreManager : MonoBehaviour
 {
-
-    StageData stageData;
-
     private float timeLimit;
     private float playTime;
 
-    void Start()
+    public void Init(float timeLimit, float playTime)
     {
-        if (stageData != null)
-        {
-            playTime = stageData.playTime;
-            timeLimit = stageData.timeLimit;
-        }
-        else
-            Debug.LogWarning("StageData 가 없습니다!");
+        this.timeLimit = timeLimit;
+        this.playTime = playTime;
     }
 
     public int Score { get; private set; } = 0; // 점수의 기본 값
@@ -29,6 +22,7 @@ public class ScoreManager : MonoBehaviour
         AddClearScore();
         AddTimeBonus();
         AddItemBonus();
+        Debug.Log($"총 점수는 {Score}점 입니다.");
     }
 
     public void AddClearScore() // 스테이지 클리어 시 지급되는 점수
@@ -40,7 +34,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddTimeBonus() // 시간 내에 스테이지 클리어 시 지급되는 점수
     {
-        if (timeLimit <= playTime) // 뒤에 있는 timeLimit 는 클리어까지 걸린 플레이어의 시간 변수를 만들고 수정해주어야함
+        if (playTime <= timeLimit) // 뒤에 있는 timeLimit 는 클리어까지 걸린 플레이어의 시간 변수를 만들고 수정해주어야함
             Score += 1; 
     }
 
