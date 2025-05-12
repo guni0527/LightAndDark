@@ -36,21 +36,21 @@ public class SwitchTriggerComponent : MonoBehaviour
         isActivated = !isActivated;
         Debug.Log($"[스위치] {gameObject.name} - {triggerType} -> {(isActivated ? "ON" : "OFF")}");
 
-        if (puzzleSystem == null)
-        {
-            Debug.Log("[확인] puzzleSystem == null (퍼즐 영향 없음)");
-        }
-        else
-        {
-            Debug.Log("주의 puzzleSystem 연결됨! -> 퍼즐에 영향 줄 수 있음");
-        }
-
         if (puzzleSystem != null && puzzleSystem.ShouldAffectGates)
         {
             puzzleSystem.UpdatePuzzleState(triggerType, isActivated);
         }
 
-        liftLeverHandler?.PullLever();
+        if (isActivated)
+        {
+            liftLeverHandler?.PullLeverDown();
+            liftComtroller?.ActivateLiftUp();
+        }
+        else
+        {
+            liftLeverHandler?.PullLeverUp();
+            liftComtroller?.ActivateLiftDown();
+        }
     }
 
     /// <summary>

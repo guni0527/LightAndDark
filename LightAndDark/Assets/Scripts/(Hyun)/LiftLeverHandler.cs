@@ -7,17 +7,13 @@ public class LiftLeverHandler : MonoBehaviour
     [SerializeField] private Animator leverAnimator;
     [SerializeField] private LiftController liftController;
 
-    private bool isActivated = false;
-
-    public void PullLever()
+    public void PullLeverDown()
     {
-        if (isActivated)
-        {
-            return;
-        }
-
-        isActivated = true;
         leverAnimator.SetTrigger("LiftLever_Down");
-        liftController.ActivateLift();
+    }
+
+    public void PullLeverUp()
+    {        
+        leverAnimator.SetTrigger("LiftLever_Up");
     }
 }

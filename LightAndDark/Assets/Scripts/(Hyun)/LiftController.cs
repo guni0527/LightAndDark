@@ -4,8 +4,8 @@ using UnityEngine;
 
 /// <summary>
 /// LiftComtroller
-/// ¸®ÇÁÆ® ÇÃ·§ÆûÀ» À§·Î ÀÌµ¿½ÃÅ°´Â ¿ªÇÒÀ» ´ã´çÇÏ´Â ÄÁÆ®·Ñ·¯
-/// SwitchTriggerComponent¿¡¼­ ActivatiteLift()¸¦ È£ÃâÇÏ¸é ÀÌµ¿ ½ÃÀÛ
+/// ë¦¬í”„íŠ¸ í”Œë«í¼ì„ ìœ„ë¡œ ì´ë™ì‹œí‚¤ëŠ” ì—­í• ì„ ë‹´ë‹¹í•˜ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬
+/// SwitchTriggerComponentì—ì„œ ActivatiteLift()ë¥¼ í˜¸ì¶œí•˜ë©´ ì´ë™ ì‹œì‘
 /// </summary>
 public class LiftController : MonoBehaviour
 {
@@ -14,29 +14,40 @@ public class LiftController : MonoBehaviour
     [SerializeField] private Transform bottomPoint;
     [SerializeField] private float moveSpeed = 2f;
 
-    private bool isMoving = false;
+    private bool isMovingUp = false;
+    private bool isMovingDown = false;
 
-    /// <summary>
-    /// ¿ÜºÎ¿¡¼­ È£ÃâÇÏ¿© ¸®ÇÁÆ®¸¦ À§·Î ÀÌµ¿½ÃÅ°±â ½ÃÀÛ
-    /// </summary>
-    public void ActivateLift()
+    private void Update()
     {
-        isMoving = true;
-    }
-
-    /// <summary>
-    /// ¸Å ÇÁ·¹ÀÓ¸¶´Ù ¸®ÇÁÆ®°¡ ÀÌµ¿ ÁßÀÎÁö Ã¼Å©ÇÏ°í, ¸ñÀûÁö±îÁö ÀÌµ¿ Ã³¸®
-    /// </summary>
-    void Update()
-    {
-        if (isMoving)
+        if (isMovingUp || isMovingDown)
         {
-            liftPlatform.position = Vector3.MoveTowards(liftPlatform.position, topPoint.position, moveSpeed * Time.deltaTime);
+            float targetY = isMovingUp ? topPoint.position.y : bottomPoint.position.y;
+            Vector3 target = isMovingUp ? topPoint.position : bottomPoint.position;
 
-            if (Vector3.Distance(liftPlatform.position, topPoint.position) < 0.01f)
+            liftPlatform.position = Vector3.MoveTowards(liftPlatform.position, target, moveSpeed * Time.deltaTime);
+
+            if (Vector3.Distance(liftPlatform.position, target) < 0.01f)
             {
-                isMoving = false;
+                isMovingUp = false;
+                isMovingDown = false;
             }
         }
+        
     }
+
+    /// <summary>
+    /// ì™¸ë¶€ì—ì„œ í˜¸ì¶œí•˜ì—¬ ë¦¬í”„íŠ¸ë¥¼ ìœ„ë¡œ ì´ë™ì‹œí‚¤ê¸° ì‹œì‘
+    /// </summary>
+    public void ActivateLiftUp()
+    {
+        isMovingUp = true;
+        isMovingDown = false;
+    }
+
+    public void ActivateLiftDown()
+    {
+        isMovingUp = false;
+        isMovingDown = true;
+    }
+
 }
