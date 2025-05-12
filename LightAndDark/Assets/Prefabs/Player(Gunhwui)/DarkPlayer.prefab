@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 589136478269517688}
   m_Layer: 6
   m_Name: DarkPlayer
-  m_TagString: Untagged
+  m_TagString: DarkPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
