@@ -7,8 +7,6 @@ public class LiftLeverHandler : MonoBehaviour
     [SerializeField] private Animator leverAnimator;
     [SerializeField] private LiftController liftController;
 
-    private bool isActivated = false;
-
     public void PullLeverDown()
     {
         leverAnimator.SetTrigger("LiftLever_Down");
