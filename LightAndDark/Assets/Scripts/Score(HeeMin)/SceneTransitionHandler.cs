@@ -6,33 +6,38 @@ using UnityEngine.SceneManagement;
 public class SceneTransitionHandler : MonoBehaviour
 {
     StageData stageData;
-    private string targetScene;
+    private string sceneName;
 
     void Start()
     {
-        targetScene = stageData.sceneName;
+        sceneName = stageData.sceneName;
+
+        if (stageData != null)
+            sceneName = stageData.sceneName;
+        else
+            Debug.LogWarning("StageData ê°€ ì—†ìŠµë‹ˆë‹¤!");
     }
 
-    public void MainScene() // ¸ŞÀÎ È­¸éÀ¸·Î ÀÌµ¿ÇÏ±â
+    public void MainScene() // ë©”ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™í•˜ê¸°
     {
         SceneManager.LoadScene("MainScene");
     }
 
-    public void StageSetScene() // ½ºÅ×ÀÌÁö ¼±ÅÃ È­¸éÀ¸·Î ÀÌµ¿ÇÏ±â
+    public void StageSetScene() // ìŠ¤í…Œì´ì§€ ì„ íƒ í™”ë©´ìœ¼ë¡œ ì´ë™í•˜ê¸°
     {
         SceneManager.LoadScene("StageSetScene");
     }
 
 
-    public void StageScene() // ÁöÁ¤µÈ ½ºÅ×ÀÌÁö·Î ÀÌµ¿ÇÏ±â
+    public void StageScene() // ì§€ì •ëœ ìŠ¤í…Œì´ì§€ë¡œ ì´ë™í•˜ê¸°
     {
-        SceneManager.LoadScene(targetScene);
+        SceneManager.LoadScene(sceneName);
     }
 
-    public void StageClearScene() // ½ºÅ×ÀÌÁö Å¬¸®¾î ¾À ÀÌµ¿ÇÏ±â
+    public void StageClearScene() // ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´ ì”¬ ì´ë™í•˜ê¸°
     {
-        // ±×·±µ¥ ½ºÅ×ÀÌÁö Å¬¸®¾î´Â ´Ü¼øÈ÷ ½ºÅ×ÀÌÁö Ã¢¿¡¼­ ÀÌ¹ÌÁö¸¦ ¸¸µé¾îµÎ°í
-        // Å¬¸®¾îÇÏ¸é ±× Ã¢À» È°¼ºÈ­ ÇÏ´Â ½ÄÀ¸·Î ¾²´Â°Ô ´õ ³ªÀ» ¼öµµ ÀÖÀ» µí ÇÔ.
+        // ê·¸ëŸ°ë° ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´ëŠ” ë‹¨ìˆœíˆ ìŠ¤í…Œì´ì§€ ì°½ì—ì„œ ì´ë¯¸ì§€ë¥¼ ë§Œë“¤ì–´ë‘ê³ 
+        // í´ë¦¬ì–´í•˜ë©´ ê·¸ ì°½ì„ í™œì„±í™” í•˜ëŠ” ì‹ìœ¼ë¡œ ì“°ëŠ”ê²Œ ë” ë‚˜ì„ ìˆ˜ë„ ìˆì„ ë“¯ í•¨.
 
         SceneManager.LoadScene("StageClearScene");
     }
