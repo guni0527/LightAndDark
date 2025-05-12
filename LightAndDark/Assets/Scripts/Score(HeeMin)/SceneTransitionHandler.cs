@@ -8,14 +8,10 @@ public class SceneTransitionHandler : MonoBehaviour
     StageData stageData;
     private string sceneName;
 
-    void Start()
+    public void Init(StageData data)
     {
-        sceneName = stageData.sceneName;
-
-        if (stageData != null)
-            sceneName = stageData.sceneName;
-        else
-            Debug.LogWarning("StageData 가 없습니다!");
+        stageData = data;
+        sceneName = data.sceneName;
     }
 
     public void MainScene() // 메인 화면으로 이동하기
