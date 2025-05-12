@@ -2,17 +2,18 @@ using UnityEngine;
 
 public class WhiteController : MonoBehaviour
 {
-    public float moveSpeed = 5f;//¼Óµµ ±âº»°ª
-    public float jumpForce = 7f;//Á¡ÇÁ·Â ±âº»°ª
+    public float moveSpeed = 5f;//ì†ë„ ê¸°ë³¸ê°’
+    public float jumpForce = 7f;//ì í”„ë ¥ ê¸°ë³¸ê°’
 
-    public Sprite idleSprite; //½ºÇÁ¶óÀÌÆ® ºÒ·¯¿À´Â°Å
-    public Sprite moveSprite; //µ¿ÀÏ
-    public Sprite jumpSprite; //µ¿ÀÏ
+    public Sprite idleSprite; //ìŠ¤í”„ë¼ì´íŠ¸ ë¶ˆëŸ¬ì˜¤ëŠ”ê±°
+    public Sprite moveSprite; //ë™ì¼
+    public Sprite jumpSprite; //ë™ì¼
+    public Sprite dieSprite;  //ë™ì¼
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private bool isGrounded;
-
+    private bool isDead = false;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -21,25 +22,35 @@ public class WhiteController : MonoBehaviour
 
     void Update()
     {
+        if (isDead)
+            return;
+
+        Debug.Log("Update ì‹¤í–‰ ì¤‘");
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Debug.Log("Kí‚¤ ëˆŒë¦¼!");
+            LightDie();
+        }
         float move = 0f;
-        //Å° ÀÔ·Â       Å° ¹Ù²Ü¶§ ¿©±â ¼öÁ¤   
-        if (Input.GetKey(KeyCode.A)) move = -1f; //x°ª ÁÙ¿©ÁÜÀ¸·Î½á ¿ŞÂÊÀ¸·Î °¨
-        if (Input.GetKey(KeyCode.D)) move = 1f; //x°ª ´Ã·ÁÁÜÀ¸·Î½á ¿À¸¥ÂÊÀ¸·Î °¨
+        //í‚¤ ì…ë ¥       í‚¤ ë°”ê¿€ë•Œ ì—¬ê¸° ìˆ˜ì •   
+        if (Input.GetKey(KeyCode.A)) move = -1f; //xê°’ ì¤„ì—¬ì¤Œìœ¼ë¡œì¨ ì™¼ìª½ìœ¼ë¡œ ê°
+        if (Input.GetKey(KeyCode.D)) move = 1f; //xê°’ ëŠ˜ë ¤ì¤Œìœ¼ë¡œì¨ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê°
 
         rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
 
-        //¹æÇâ ÀüÈ¯ ÇÒ¶§ ±×¸²ÀÌ ¿òÁ÷ÀÌµµ·Ï ÇØÁÜ
+        //ë°©í–¥ ì „í™˜ í• ë•Œ ê·¸ë¦¼ì´ ì›€ì§ì´ë„ë¡ í•´ì¤Œ
         if (move != 0)
             spriteRenderer.flipX = move < 0;
 
-        //Á¡ÇÁ¸¦ ´ã´çÇØÁÜ
+        //ì í”„ë¥¼ ë‹´ë‹¹í•´ì¤Œ
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isGrounded = false;
         }
 
-        //¶¥¿¡ ´ê¾Ò°Å³ª ¾Æ´Ò¶§ ¸ğ¼ÇÀÌ¶û °É¾î´Ù´Ò¶§ ³ª¿À´Â ¸ğ¼Ç ÇØÁÖ´Â°Å //¿©±â°¡ Áø½É wrkxdma
+        //ë•…ì— ë‹¿ì•˜ê±°ë‚˜ ì•„ë‹ë•Œ ëª¨ì…˜ì´ë‘ ê±¸ì–´ë‹¤ë‹ë•Œ ë‚˜ì˜¤ëŠ” ëª¨ì…˜ í•´ì£¼ëŠ”ê±° //ì—¬ê¸°ê°€ ì§„ì‹¬ wrkxdma
         if (!isGrounded)
         {
             spriteRenderer.sprite = jumpSprite;
@@ -69,5 +80,13 @@ public class WhiteController : MonoBehaviour
     void OnCollisionExit2D(Collision2D collision)
     {
         isGrounded = false;
+    }
+
+    public void LightDie()//ì£½ì—ˆì„ë•Œ LightZoneTrigger.csì— í˜¸ì¶œë°›ìŒ
+    {
+        isDead = true;
+        rb.velocity = Vector2.zero;
+        spriteRenderer.sprite = dieSprite;
+        Debug.Log("WhiteController: ì‚¬ë§ì²˜ë¦¬ë¨");
     }
 }

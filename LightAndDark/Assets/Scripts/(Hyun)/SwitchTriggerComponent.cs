@@ -4,20 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// ½ºÀ§Ä¡ Æ®¸®°Å ÄÄÆ÷³ÍÆ®
-/// ÇÃ·¹ÀÌ¾î°¡ Æ¯Á¤ ½ºÀ§Ä¡¿¡ Á¢±ÙÇÏ¸é PuzzleSystem¿¡ Æ®¸®°Å ½ÅÈ£¸¦ º¸³¿
+/// ìŠ¤ìœ„ì¹˜ íŠ¸ë¦¬ê±° ì»´í¬ë„ŒíŠ¸
+/// í”Œë ˆì´ì–´ê°€ íŠ¹ì • ìŠ¤ìœ„ì¹˜ì— ì ‘ê·¼í•˜ë©´ PuzzleSystemì— íŠ¸ë¦¬ê±° ì‹ í˜¸ë¥¼ ë³´ëƒ„
 /// </summary>
 public class SwitchTriggerComponent : MonoBehaviour
 {     
     [SerializeField] private TriggerType triggerType;      
     [SerializeField] private PuzzleSystem puzzleSystem;     
     [SerializeField] private LiftController liftComtroller;
+    [SerializeField] private LiftLeverHandler liftLeverHandler;
 
     private bool isTrigger = false;      
     private bool isActivated = false;    
 
     /// <summary>
-    /// ¸Å ÇÁ·¹ÀÓ¸¶´Ù ÀÔ·ÂÀ» Ã¼Å©ÇÏ¿© Æ®¸®°Å ¾È¿¡ ÀÖÀ» ¶§ HÅ°·Î ½ºÀ§Ä¡¸¦ ÀÛµ¿½ÃÅ´
+    /// ë§¤ í”„ë ˆì„ë§ˆë‹¤ ì…ë ¥ì„ ì²´í¬í•˜ì—¬ íŠ¸ë¦¬ê±° ì•ˆì— ìˆì„ ë•Œ Hí‚¤ë¡œ ìŠ¤ìœ„ì¹˜ë¥¼ ì‘ë™ì‹œí‚´
     /// </summary>
     private void Update()
     {
@@ -28,20 +29,20 @@ public class SwitchTriggerComponent : MonoBehaviour
     }
 
     /// <summary>
-    /// ½ºÀ§Ä¡ »óÅÂ¸¦ ¹İÀü½ÃÄÑ PuzzleSystem¿¡ Àü´ŞÇÔ, ÃßÈÄ ½Ã°¢Àû/ Ã»°¢Àû ÇÇµå¹é Ã³¸®°¡´É
+    /// ìŠ¤ìœ„ì¹˜ ìƒíƒœë¥¼ ë°˜ì „ì‹œì¼œ PuzzleSystemì— ì „ë‹¬í•¨, ì¶”í›„ ì‹œê°ì / ì²­ê°ì  í”¼ë“œë°± ì²˜ë¦¬ê°€ëŠ¥
     /// </summary>
     private void ToggleSwitch()
     {
         isActivated = !isActivated;
-        Debug.Log($"[½ºÀ§Ä¡] {gameObject.name} - {triggerType} -> {(isActivated ? "ON" : "OFF")}");
+        Debug.Log($"[ìŠ¤ìœ„ì¹˜] {gameObject.name} - {triggerType} -> {(isActivated ? "ON" : "OFF")}");
 
         if (puzzleSystem == null)
         {
-            Debug.Log("[È®ÀÎ] puzzleSystem == null (ÆÛÁñ ¿µÇâ ¾øÀ½)");
+            Debug.Log("[í™•ì¸] puzzleSystem == null (í¼ì¦ ì˜í–¥ ì—†ìŒ)");
         }
         else
         {
-            Debug.Log("ÁÖÀÇ puzzleSystem ¿¬°áµÊ! -> ÆÛÁñ¿¡ ¿µÇâ ÁÙ ¼ö ÀÖÀ½");
+            Debug.Log("ì£¼ì˜ puzzleSystem ì—°ê²°ë¨! -> í¼ì¦ì— ì˜í–¥ ì¤„ ìˆ˜ ìˆìŒ");
         }
 
         if (puzzleSystem != null && puzzleSystem.ShouldAffectGates)
@@ -49,42 +50,42 @@ public class SwitchTriggerComponent : MonoBehaviour
             puzzleSystem.UpdatePuzzleState(triggerType, isActivated);
         }
 
-        liftComtroller?.ActivateLift();
+        liftLeverHandler?.PullLever();
     }
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î°¡ Æ®¸®°Å Á¸¿¡ ÁøÀÔÇßÀ» ¶§ ½ÇÇàµÊ
-    /// À¯È¿ÇÑ ÇÃ·¹ÀÌ¾î(TriggerType°ú ÀÏÄ¡)ÀÏ °æ¿ì Æ®¸®°Å È°¼ºÈ­
+    /// í”Œë ˆì´ì–´ê°€ íŠ¸ë¦¬ê±° ì¡´ì— ì§„ì…í–ˆì„ ë•Œ ì‹¤í–‰ë¨
+    /// ìœ íš¨í•œ í”Œë ˆì´ì–´(TriggerTypeê³¼ ì¼ì¹˜)ì¼ ê²½ìš° íŠ¸ë¦¬ê±° í™œì„±í™”
     /// </summary>
-    /// <param name="other">Æ®¸®°Å¿¡ µé¾î¿Â Äİ¶óÀÌ´õ</param>
+    /// <param name="other">íŠ¸ë¦¬ê±°ì— ë“¤ì–´ì˜¨ ì½œë¼ì´ë”</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (IsValidPlayer(other))
         {
             isTrigger = true;
-            Debug.Log($"[½ºÀ§Ä¡] {triggerType} ÇÃ·¹ÀÌ¾î ÁøÀÔ: {gameObject.name}");
+            Debug.Log($"[ìŠ¤ìœ„ì¹˜] {triggerType} í”Œë ˆì´ì–´ ì§„ì…: {gameObject.name}");
         }
     }
 
     /// <summary>
-    /// ÇÃ·¹ÀÌ¾î°¡ Æ®¸®°Å Á¸¿¡¼­ ¹ş¾î³µÀ» ¶§ È£ÃâµÊ
-    /// À¯È¿ÇÑ ÇÃ·¹ÀÌ¾îÀÏ °æ¿ì Æ®¸®°Å ºñÈ°¼ºÈ­
+    /// í”Œë ˆì´ì–´ê°€ íŠ¸ë¦¬ê±° ì¡´ì—ì„œ ë²—ì–´ë‚¬ì„ ë•Œ í˜¸ì¶œë¨
+    /// ìœ íš¨í•œ í”Œë ˆì´ì–´ì¼ ê²½ìš° íŠ¸ë¦¬ê±° ë¹„í™œì„±í™”
     /// </summary>
-    /// <param name="other">Æ®¸®°Å¿¡¼­ ³ª°£ Äİ¶óÀÌ´õ</param>
+    /// <param name="other">íŠ¸ë¦¬ê±°ì—ì„œ ë‚˜ê°„ ì½œë¼ì´ë”</param>
     private void OnTriggerExit2D(Collider2D other)
     {
         if (IsValidPlayer(other))
         {
             isTrigger = false;
-            Debug.Log($"[½ºÀ§Ä¡] {triggerType} ÇÃ·¹ÀÌ¾î ÀÌÅ»: {gameObject.name}");
+            Debug.Log($"[ìŠ¤ìœ„ì¹˜] {triggerType} í”Œë ˆì´ì–´ ì´íƒˆ: {gameObject.name}");
         }
     }
 
     /// <summary>
-    /// Ãæµ¹ÇÑ °´Ã¼°¡ ÇöÀç ½ºÀ§Ä¡ÀÇ Å¸ÀÔ°ú ÀÏÄ¡ÇÏ´Â ÇÃ·¹ÀÌ¾îÀÎÁö ÆÇº°
+    /// ì¶©ëŒí•œ ê°ì²´ê°€ í˜„ì¬ ìŠ¤ìœ„ì¹˜ì˜ íƒ€ì…ê³¼ ì¼ì¹˜í•˜ëŠ” í”Œë ˆì´ì–´ì¸ì§€ íŒë³„
     /// </summary>
-    /// <param name="other">Ãæµ¹ÇÑ Äİ¶óÀÌ´õ</param>
-    /// <returns>ÇØ´ç ÇÃ·¹ÀÌ¾î°¡ À¯È¿ÇÑ Å¸ÀÔÀÏ °æ¿ì true</returns>
+    /// <param name="other">ì¶©ëŒí•œ ì½œë¼ì´ë”</param>
+    /// <returns>í•´ë‹¹ í”Œë ˆì´ì–´ê°€ ìœ íš¨í•œ íƒ€ì…ì¼ ê²½ìš° true</returns>
     private bool IsValidPlayer(Collider2D other)
     {
         return (triggerType == TriggerType.Light && other.CompareTag("LightPlayer")) || (triggerType == TriggerType.Dark && other.CompareTag("DarkPlayer"));
