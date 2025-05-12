@@ -9,8 +9,7 @@ public class LightZoneTrigger : MonoBehaviour
         if (other.CompareTag("DarkPlayer"))
         {
             Debug.Log("어둠이 빛에 닿아 사망");
-            Destroy(other.gameObject);
-            
+            Destroy(other.gameObject);          
         }
     }
 
