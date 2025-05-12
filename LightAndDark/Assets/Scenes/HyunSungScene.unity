@@ -159,7 +159,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1207,22 +1207,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LiftController
       objectReference: {fileID: 0}
-    - target: {fileID: 1819860687306622188, guid: c6681bffa5fadb04b835594fb8fc4148, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2113914283252715240, guid: c6681bffa5fadb04b835594fb8fc4148, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2113914283252715240, guid: c6681bffa5fadb04b835594fb8fc4148, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2113914283252715240, guid: c6681bffa5fadb04b835594fb8fc4148, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3840433023233326446, guid: c6681bffa5fadb04b835594fb8fc4148, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.26
@@ -1339,11 +1323,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2336481844832796383, guid: 1b903fc154d9f0c48a942299ed950eb6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.13
+      value: -3.38
       objectReference: {fileID: 0}
     - target: {fileID: 2336481844832796383, guid: 1b903fc154d9f0c48a942299ed950eb6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.19
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 2336481844832796383, guid: 1b903fc154d9f0c48a942299ed950eb6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1404,7 +1388,7 @@ PrefabInstance:
       objectReference: {fileID: 1702261962}
     - target: {fileID: 5656264836096417216, guid: 3db3171919ce37c4097a52cd990d830d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.38
+      value: 4.02
       objectReference: {fileID: 0}
     - target: {fileID: 5656264836096417216, guid: 3db3171919ce37c4097a52cd990d830d, type: 3}
       propertyPath: m_LocalPosition.y
