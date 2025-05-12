@@ -1560,6 +1560,10 @@ PrefabInstance:
       propertyPath: liftComtroller
       value: 
       objectReference: {fileID: 1383287500}
+    - target: {fileID: 2231555126937197876, guid: 96d206fc8a407ab41960c01d8645d897, type: 3}
+      propertyPath: liftLeverHandler
+      value: 
+      objectReference: {fileID: 421928540}
     - target: {fileID: 2837432750394363013, guid: 96d206fc8a407ab41960c01d8645d897, type: 3}
       propertyPath: m_Name
       value: LiftLever
@@ -1575,6 +1579,14 @@ PrefabInstance:
     - target: {fileID: 3914836914753998277, guid: 96d206fc8a407ab41960c01d8645d897, type: 3}
       propertyPath: m_Color.r
       value: 0.8113208
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730383754443323177, guid: 96d206fc8a407ab41960c01d8645d897, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730383754443323177, guid: 96d206fc8a407ab41960c01d8645d897, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 6730383754443323177, guid: 96d206fc8a407ab41960c01d8645d897, type: 3}
       propertyPath: m_LocalPosition.x
