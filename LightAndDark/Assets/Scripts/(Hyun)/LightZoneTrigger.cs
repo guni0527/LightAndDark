@@ -9,8 +9,15 @@ public class LightZoneTrigger : MonoBehaviour
         if (other.CompareTag("DarkPlayer"))
         {
             Debug.Log("어둠이 빛에 닿아 사망");
-            Destroy(other.gameObject);
-            
+            DarkController dark = other.GetComponent<DarkController>();
+            if (dark != null)
+            {
+                dark.DarkDie();
+            }
+            else
+            {
+                Debug.LogWarning("DarkController 컴포넌트를 찾을수없음.");
+            }
         }
     }
 
@@ -18,8 +25,16 @@ public class LightZoneTrigger : MonoBehaviour
     {
         if (other.CompareTag("LightPlayer"))
         {
-            Debug.Log("빛 캐릭터가 전등 범위를 벗어나 사망");           
-            Destroy(other.gameObject);           
+            Debug.Log("빛 캐릭터가 전등 범위를 벗어나 사망");
+            WhiteController white = other.GetComponent<WhiteController>();
+            if(white != null)
+            {
+                white.LightDie();
+            }
+            else
+            {
+                Debug.LogWarning("LightController 컴포넌트를 찾을수없음.");
+            }
         }
     }
 }
