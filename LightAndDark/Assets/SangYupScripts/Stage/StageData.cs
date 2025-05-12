@@ -5,13 +5,15 @@ using UnityEngine;
 [System.Serializable]
 public class StageData
 {
-    public string stageName; // ½ºÅ×ÀÌÁö ÀÌ¸§    
-    public float timeLimit; // Á¦ÇÑ ½Ã°£ (ÃÊ ´ÜÀ§)
-    public string sceneName; // ÇØ´ç ½ºÅ×ÀÌÁö°¡ ·ÎµåÇÒ ¾À ÀÌ¸§
+    public string stageName; // ìŠ¤í…Œì´ì§€ ì´ë¦„    
+    public float playTime; // í”Œë ˆì´ ì‹œê°„ (ì´ˆ ë‹¨ìœ„)
+    public float timeLimit; // ì œí•œ ì‹œê°„ (ì´ˆ ë‹¨ìœ„)
+    public string sceneName; // í•´ë‹¹ ìŠ¤í…Œì´ì§€ê°€ ë¡œë“œí•  ì”¬ ì´ë¦„
 
-    public StageData(string stageName, int stageIndex, float timeLimit, string sceneName)
+    public StageData(string stageName, int stageIndex, float playTime, float timeLimit, string sceneName)
     {
         this.stageName = stageName;
+        this.playTime = playTime;
         this.timeLimit = timeLimit;
         this.sceneName = sceneName;
     }    

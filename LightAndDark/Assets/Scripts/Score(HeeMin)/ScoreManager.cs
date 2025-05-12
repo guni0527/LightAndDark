@@ -9,13 +9,15 @@ public class ScoreManager : MonoBehaviour
     StageData stageData;
 
     private float timeLimit;
+    private float playTime;
 
     void Start()
     {
-        timeLimit = stageData.timeLimit;
-
         if (stageData != null)
+        {
+            playTime = stageData.playTime;
             timeLimit = stageData.timeLimit;
+        }
         else
             Debug.LogWarning("StageData 가 없습니다!");
     }
@@ -38,7 +40,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddTimeBonus() // 시간 내에 스테이지 클리어 시 지급되는 점수
     {
-        if (timeLimit <= timeLimit) // 뒤에 있는 timeLimit 는 클리어까지 걸린 플레이어의 시간 변수를 만들고 수정해주어야함
+        if (timeLimit <= playTime) // 뒤에 있는 timeLimit 는 클리어까지 걸린 플레이어의 시간 변수를 만들고 수정해주어야함
             Score += 1; 
     }
 
