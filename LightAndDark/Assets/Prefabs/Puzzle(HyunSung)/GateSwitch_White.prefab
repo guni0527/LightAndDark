@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 81532458717147184}
   - component: {fileID: 7128129923546470637}
   m_Layer: 0
-  m_Name: GateSwitch_Light
+  m_Name: GateSwitch_White
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
