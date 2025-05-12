@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7592841162122248326}
   - component: {fileID: 7856241002738144884}
   - component: {fileID: 5681647415040015253}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LightZone (Light1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,6 +157,6 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0.030646324, y: 0.8146873}
-      - {x: -0.6225853, y: -0.61673856}
-      - {x: 0.61747754, y: -0.61673856}
+      - {x: -0.73899883, y: -0.8622933}
+      - {x: 0.7111145, y: -0.8726688}
   m_UseDelaunayMesh: 0

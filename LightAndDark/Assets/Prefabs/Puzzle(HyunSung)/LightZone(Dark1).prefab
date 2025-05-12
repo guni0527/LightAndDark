@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8963395084816053344}
   - component: {fileID: 7660360731996654591}
   - component: {fileID: 412825081304613018}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LightZone(Dark1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
