@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LightPlayer
   - DarkPlayer
+  - LightZone
   layers:
   - Default
   - TransparentFX
