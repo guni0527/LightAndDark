@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ÆÛÁñ °ÔÀÌÆ® Á¦¾î ÄÄÆ÷³ÍÆ®
-/// PuzzleSystem¿¡ ÀÇÇØ ¿­¸®´Â ¹® ¿ªÇÒ
-/// Æ¯Á¤ ½ºÀ§Ä¡ Å¸ÀÔµéÀÌ ¸ğµÎ È°¼ºÈ­µÇ¸é ¿­¸²
+/// í¼ì¦ ê²Œì´íŠ¸ ì œì–´ ì»´í¬ë„ŒíŠ¸
+/// PuzzleSystemì— ì˜í•´ ì—´ë¦¬ëŠ” ë¬¸ ì—­í• 
+/// íŠ¹ì • ìŠ¤ìœ„ì¹˜ íƒ€ì…ë“¤ì´ ëª¨ë‘ í™œì„±í™”ë˜ë©´ ì—´ë¦¼
 /// </summary>
 public class PuzzleGateController : MonoBehaviour
 {
-    [Header("¿­¸± À§Ä¡ ¿ÀÇÁ¼Â")]
+    [Header("ì—´ë¦´ ìœ„ì¹˜ ì˜¤í”„ì…‹")]
     [SerializeField] private Vector3 openOffset = new Vector3(0, 3, 0);
 
-    [Header("¿­¸² ¼Óµµ")]
+    [Header("ì—´ë¦¼ ì†ë„")]
     [SerializeField] private float openSpeed = 2f;
 
-    [Header("ÇÊ¿äÇÑ ½ºÀ§Ä¡ Å¸ÀÔµé")]
+    [Header("í•„ìš”í•œ ìŠ¤ìœ„ì¹˜ íƒ€ì…ë“¤")]
     [SerializeField] private List<TriggerType> requiredTriggers;
 
     private bool isOpened = false;
@@ -23,6 +23,11 @@ public class PuzzleGateController : MonoBehaviour
     private Vector3 openedPosition;
     private Dictionary<TriggerType, bool> triggerStates = new();
 
+    /// <summary>
+    /// ì‹œì‘ ì‹œ í˜¸ì¶œ
+    /// - ê²Œì´íŠ¸ì˜ ë‹«íŒ ìœ„ì¹˜(closedPosition)ì™€ ì—´ë¦° ìœ„ì¹˜ (openedPosition) ì´ˆê¸°í™”
+    /// - ëª¨ë“  í•„ìˆ˜ ìŠ¤ìœ„ì¹˜ íƒ€ì… ìƒíƒœë¥¼ falseë¡œ ì´ˆê¸°í™”
+    /// </summary>
     void Start()
     {
         closedPosition = transform.position;
@@ -35,39 +40,39 @@ public class PuzzleGateController : MonoBehaviour
     }
 
     /// <summary>
-    /// puzzleSystem¿¡¼­ Æ®¸®°Å »óÅÂ°¡ ¹Ù²ğ ¶§ È£ÃâµÊ
+    /// puzzleSystemì—ì„œ íŠ¸ë¦¬ê±° ìƒíƒœê°€ ë°”ë€” ë•Œ í˜¸ì¶œë¨
     /// </summary>
-    /// <param name="triggerType">½ºÀ§Ä¡ Å¸ÀÔ (Light / Dark)</param>
-    /// <param name="isActivated">ÇØ´ç ½ºÀ§Ä¡°¡ È°¼ºÈ­ µÇ¾ú´ÂÁö ¿©ºÎ</param>
+    /// <param name="triggerType">ìŠ¤ìœ„ì¹˜ íƒ€ì… (Light / Dark)</param>
+    /// <param name="isActivated">í•´ë‹¹ ìŠ¤ìœ„ì¹˜ê°€ í™œì„±í™” ë˜ì—ˆëŠ”ì§€ ì—¬ë¶€</param>
     public void UpdateGateState(TriggerType triggerType, bool isActivated)
     {       
         if (triggerStates.ContainsKey(triggerType))
         {
-            Debug.Log($"[°ÔÀÌÆ®] {gameObject.name} ¡ç {triggerType}: {isActivated}");
+            Debug.Log($"[ê²Œì´íŠ¸] {gameObject.name} â† {triggerType}: {isActivated}");
 
             triggerStates[triggerType] = isActivated;
 
             foreach (var kv in triggerStates)
             {
-                Debug.Log($" - »óÅÂ {kv.Key}: {kv.Value}");
+                Debug.Log($" - ìƒíƒœ {kv.Key}: {kv.Value}");
             }
 
             if (IsConditionMet())
             {
-                Debug.Log($"[°ÔÀÌÆ® ¿­¸² Á¶°Ç ÃæÁ·]: {gameObject.name}");
+                Debug.Log($"[ê²Œì´íŠ¸ ì—´ë¦¼ ì¡°ê±´ ì¶©ì¡±]: {gameObject.name}");
                 OpenGate();
             }
             else
             {
-                Debug.Log($"[°³ÀÌÆ® ¿­¸² Á¶°Ç ºÒÃæÁ·] -> ¾ÆÁ÷ ¿­¸®Áö ¾ÊÀ½: {gameObject.name}");
+                Debug.Log($"[ê°œì´íŠ¸ ì—´ë¦¼ ì¡°ê±´ ë¶ˆì¶©ì¡±] -> ì•„ì§ ì—´ë¦¬ì§€ ì•ŠìŒ: {gameObject.name}");
             }
         }
     }
 
     /// <summary>
-    /// ÇöÀç ¸ğµç ½ºÀ§Ä¡ Á¶°ÇÀÌ ÃæÁ·µÇ¾ú´ÂÁö È®ÀÎ
+    /// í˜„ì¬ ëª¨ë“  ìŠ¤ìœ„ì¹˜ ì¡°ê±´ì´ ì¶©ì¡±ë˜ì—ˆëŠ”ì§€ í™•ì¸
     /// </summary>
-    /// <returns>¸ğµç Á¶°ÇÀÌ ¸¸Á·µÇ¸é true</returns>
+    /// <returns>ëª¨ë“  ì¡°ê±´ì´ ë§Œì¡±ë˜ë©´ true</returns>
     private bool IsConditionMet()
     {
         foreach (var trigger in requiredTriggers)
@@ -81,8 +86,8 @@ public class PuzzleGateController : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿ÜºÎ¿¡¼­ È£ÃâµÇ¾î ¹®À» ¿©´Â ¸Å¼­µå
-    /// Áßº¹ È£ÃâÀ» ¹æÁöÇÏ°í ÄÚ·çÆ¾ ½ÇÇà
+    /// ì™¸ë¶€ì—ì„œ í˜¸ì¶œë˜ì–´ ë¬¸ì„ ì—¬ëŠ” ë§¤ì„œë“œ
+    /// ì¤‘ë³µ í˜¸ì¶œì„ ë°©ì§€í•˜ê³  ì½”ë£¨í‹´ ì‹¤í–‰
     /// </summary>
     public void OpenGate()
     {
@@ -96,8 +101,8 @@ public class PuzzleGateController : MonoBehaviour
     }
 
     /// <summary>
-    /// ¹®ÀÌ ºÎµå·´°Ô ¿­¸®´Â ÄÚ·çÆ¾
-    /// ¸ñÇ¥ À§Ä¡±îÁö ÀÏÁ¤ ¼Óµµ·Î ÀÌµ¿
+    /// ë¬¸ì´ ë¶€ë“œëŸ½ê²Œ ì—´ë¦¬ëŠ” ì½”ë£¨í‹´
+    /// ëª©í‘œ ìœ„ì¹˜ê¹Œì§€ ì¼ì • ì†ë„ë¡œ ì´ë™
     /// </summary>
     /// <returns></returns>
     private IEnumerator OpenGateRoutine()

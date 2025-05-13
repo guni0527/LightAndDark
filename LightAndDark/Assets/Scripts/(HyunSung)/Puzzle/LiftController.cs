@@ -36,7 +36,7 @@ public class LiftController : MonoBehaviour
     }
 
     /// <summary>
-    /// 외부에서 호출하여 리프트를 위로 이동시키기 시작
+    /// 외부에서 호출하여 리프트를 위로 이동시키기 시작 (외부 호출용)
     /// </summary>
     public void ActivateLiftUp()
     {
@@ -44,6 +44,9 @@ public class LiftController : MonoBehaviour
         isMovingDown = false;
     }
 
+    /// <summary>
+    /// 리프트를 아래로 이동 시작 (외부 호출용)
+    /// </summary>
     public void ActivateLiftDown()
     {
         isMovingUp = false;
