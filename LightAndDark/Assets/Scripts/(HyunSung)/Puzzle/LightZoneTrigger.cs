@@ -6,6 +6,15 @@ public class LightZoneTrigger : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.CompareTag("LightPlayer"))
+        {
+            WhiteController white = other.GetComponent<WhiteController>();
+            if (white != null)
+            {
+                white.isInLightZone = true;
+            }
+        }
+
         if (other.CompareTag("DarkPlayer"))
         {
             Debug.Log("어둠이 빛에 닿아 사망");
@@ -29,12 +38,27 @@ public class LightZoneTrigger : MonoBehaviour
             WhiteController white = other.GetComponent<WhiteController>();
             if(white != null)
             {
-                white.LightDie();
-            }
-            else
-            {
-                Debug.LogWarning("LightController 컴포넌트를 찾을수없음.");
+                white.isInLightZone = false;
+
+                if (!IsInAnyLightZone(white))
+                {
+                    Debug.Log("빛 캐릭터가 완전한 어둠으로 나가 사망");
+                    white.LightDie();
+                }
             }
         }
+    }
+
+    private bool IsInAnyLightZone(WhiteController white)
+    {
+        Collider2D[] colliders = Physics2D.OverlapPointAll(white.transform.position);
+        foreach (var col in colliders)
+        {
+            if (col.CompareTag("LightZone"))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

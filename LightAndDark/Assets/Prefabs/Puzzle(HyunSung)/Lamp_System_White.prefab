@@ -81,6 +81,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4501923121031249397, guid: 71a66ea8105732a4cb765e15922876d0, type: 3}
+      propertyPath: targetZone
+      value: 
+      objectReference: {fileID: 7346341225496138092}
     - target: {fileID: 5550468328592717535, guid: 71a66ea8105732a4cb765e15922876d0, type: 3}
       propertyPath: m_Name
       value: LightSwitch_White
@@ -109,7 +113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3245653277356982515, guid: 16ac6c7c63e9bff45ac448a76df2caf4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.256952
+      value: -9.18
       objectReference: {fileID: 0}
     - target: {fileID: 3245653277356982515, guid: 16ac6c7c63e9bff45ac448a76df2caf4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -147,6 +151,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3461849844107752078, guid: 16ac6c7c63e9bff45ac448a76df2caf4, type: 3}
+      propertyPath: m_TagString
+      value: LightZone
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -157,3 +165,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3245653277356982515, guid: 16ac6c7c63e9bff45ac448a76df2caf4, type: 3}
   m_PrefabInstance: {fileID: 572805867290002242}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7346341225496138092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7061769056685511214, guid: 16ac6c7c63e9bff45ac448a76df2caf4, type: 3}
+  m_PrefabInstance: {fileID: 572805867290002242}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e3c95553a647a419cb80da927f6f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
