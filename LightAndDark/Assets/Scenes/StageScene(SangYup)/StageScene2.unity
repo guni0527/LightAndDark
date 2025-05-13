@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &367957731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 367957732}
+  m_Layer: 0
+  m_Name: BackGround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &367957732
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367957731}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.236875, y: 0.16586244, z: -0.02295798}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &421186759
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,9 +366,11 @@ MonoBehaviour:
   currentStageIndex: 0
   stageList:
   - stageName: StageScene1
+    playTime: 0
     timeLimit: 120
     sceneName: StageScene1
   - stageName: StageScene2
+    playTime: 0
     timeLimit: 120
     sceneName: StageScene2
 --- !u!4 &1282626956
@@ -363,3 +396,4 @@ SceneRoots:
   - {fileID: 1146256452}
   - {fileID: 421186761}
   - {fileID: 1282626956}
+  - {fileID: 367957732}
