@@ -136,6 +136,10 @@ PrefabInstance:
       value: LightZone(Dark1)
       objectReference: {fileID: 0}
     - target: {fileID: 7660360731996654591, guid: e7a3ebdd5417d494b8f7d1568df2c8a6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7660360731996654591, guid: e7a3ebdd5417d494b8f7d1568df2c8a6, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
       value: 0.03224731
       objectReference: {fileID: 0}
@@ -185,19 +189,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8166813974605271347, guid: e7a3ebdd5417d494b8f7d1568df2c8a6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9999996
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8166813974605271347, guid: e7a3ebdd5417d494b8f7d1568df2c8a6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8166813974605271347, guid: e7a3ebdd5417d494b8f7d1568df2c8a6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8166813974605271347, guid: e7a3ebdd5417d494b8f7d1568df2c8a6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00097652595
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8166813974605271347, guid: e7a3ebdd5417d494b8f7d1568df2c8a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -209,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8166813974605271347, guid: e7a3ebdd5417d494b8f7d1568df2c8a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.112
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
