@@ -15,6 +15,9 @@ public class WhiteController : MonoBehaviour
     private bool isGrounded;
     private bool isDead = false;
 
+    public bool isInLightZone = false;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
