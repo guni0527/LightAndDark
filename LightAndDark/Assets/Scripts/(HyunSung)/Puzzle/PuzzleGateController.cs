@@ -11,10 +11,8 @@ public class PuzzleGateController : MonoBehaviour
 {
     [Header("열릴 위치 오프셋")]
     [SerializeField] private Vector3 openOffset = new Vector3(0, 3, 0);
-
     [Header("열림 속도")]
     [SerializeField] private float openSpeed = 2f;
-
     [Header("필요한 스위치 타입들")]
     [SerializeField] private List<TriggerType> requiredTriggers;
 
