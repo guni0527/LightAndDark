@@ -18,6 +18,8 @@ public class DarkController : MonoBehaviour
     private bool isGrounded;
     private bool isDead = false;
 
+    private float moveInput = 0f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,21 +31,14 @@ public class DarkController : MonoBehaviour
         if (isDead)
             return;
 
-        float move = 0f;
+        moveInput = 0f;
         //키 입력       키 바꿀때 여기 수정 
-        if (Input.GetKey(KeyCode.LeftArrow)) move = -1f;//x값 줄여줌으로써 왼쪽으로 감
-        if (Input.GetKey(KeyCode.RightArrow)) move = 1f;//x값 늘려줌으로써 왼쪽으로 감
-
-       
-
-
-
-
-        rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
+        if (Input.GetKey(KeyCode.LeftArrow)) moveInput = -1f;//x값 줄여줌으로써 왼쪽으로 감
+        if (Input.GetKey(KeyCode.RightArrow)) moveInput = 1f;//x값 늘려줌으로써 왼쪽으로 감
 
         //Move 스프라이트가 다른방향을 볼수있게 해줌
-        if (move != 0)
-            spriteRenderer.flipX = move < 0;
+        if (moveInput != 0)
+            spriteRenderer.flipX = moveInput < 0;
 
 
         //조작관련임
@@ -58,7 +53,7 @@ public class DarkController : MonoBehaviour
         {
             spriteRenderer.sprite = jumpSprite;
         }
-        else if (Mathf.Abs(move) > 0.1f)
+        else if (Mathf.Abs(moveInput) > 0.1f)
         {
             spriteRenderer.sprite = moveSprite;
         }
@@ -68,11 +63,23 @@ public class DarkController : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (isDead)
+        {
+            return;
+        }
+
+        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         foreach (ContactPoint2D contact in collision.contacts)
         {
-            if (contact.normal.y > 0.5f)
+            // 기존: contact.normal.y > 0.5f
+            // 개선: Y축 위 방향 + X축 밀착일 경우 필터링
+            if (contact.normal.y > 0.5f && Mathf.Abs(contact.normal.x) < 0.5f)
             {
                 isGrounded = true;
                 break;
@@ -82,7 +89,10 @@ public class DarkController : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        isGrounded = false;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isGrounded = false;
+        }
     }
     public void DarkDie()//죽었을때 LightZoneTrigger.cs에 호출받음
     {
