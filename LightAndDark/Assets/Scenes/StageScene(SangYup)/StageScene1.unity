@@ -2078,6 +2078,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4510387740574196009, guid: 792d8fcca14dfff4f9741442fbc1224f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a3492d1f6eb2cde4d87d561d724fc432, type: 3}
+    - target: {fileID: 4510387740574196009, guid: 792d8fcca14dfff4f9741442fbc1224f, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510387740574196009, guid: 792d8fcca14dfff4f9741442fbc1224f, type: 3}
+      propertyPath: m_SortingOrder
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 6829891185828732565, guid: 792d8fcca14dfff4f9741442fbc1224f, type: 3}
       propertyPath: m_Name
       value: DarkGoal
@@ -2095,6 +2107,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1761714179}
     m_Modifications:
+    - target: {fileID: 406957638643356584, guid: d29cbe02e9f92584babf04203a90ba4f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a3492d1f6eb2cde4d87d561d724fc432, type: 3}
+    - target: {fileID: 406957638643356584, guid: d29cbe02e9f92584babf04203a90ba4f, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 406957638643356584, guid: d29cbe02e9f92584babf04203a90ba4f, type: 3}
+      propertyPath: m_SortingOrder
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 7525288931940906219, guid: d29cbe02e9f92584babf04203a90ba4f, type: 3}
       propertyPath: m_Name
       value: LightGoal
@@ -2154,10 +2178,10 @@ SceneRoots:
   - {fileID: 1639585685917201220}
   - {fileID: 2958731307474724429}
   - {fileID: 679829335}
-  - {fileID: 3310537889357643482}
   - {fileID: 1644968679}
-  - {fileID: 1617558084}
+  - {fileID: 3310537889357643482}
   - {fileID: 885182106}
+  - {fileID: 1617558084}
   - {fileID: 1761714179}
   - {fileID: 256579999}
   - {fileID: 1469299628}

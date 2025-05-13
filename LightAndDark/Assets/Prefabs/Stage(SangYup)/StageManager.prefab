@@ -58,3 +58,7 @@ MonoBehaviour:
     playTime: 0
     timeLimit: 120
     sceneName: StageScene3
+  - stageName: StageScene4
+    playTime: 0
+    timeLimit: 120
+    sceneName: StageScene4
