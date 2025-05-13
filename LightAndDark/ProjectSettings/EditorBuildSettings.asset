@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StageScene(SangYup)/StageScene2.unity
     guid: ffd9078b77742ff4f98035e2de38f050
+  - enabled: 1
+    path: Assets/Scenes/StageScene(SangYup)/StageScene3.unity
+    guid: 93a9e524a4e227d48a11b112947dc526
   m_configObjects: {}
