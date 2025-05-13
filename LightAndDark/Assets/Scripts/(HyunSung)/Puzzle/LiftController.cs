@@ -14,6 +14,10 @@ public class LiftController : MonoBehaviour
     [SerializeField] private Transform bottomPoint;
     [SerializeField] private float moveSpeed = 2f;
 
+    [Header("사운드")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip liftSound;
+
     private bool isMovingUp = false;
     private bool isMovingDown = false;
 
@@ -36,18 +40,23 @@ public class LiftController : MonoBehaviour
     }
 
     /// <summary>
-    /// 외부에서 호출하여 리프트를 위로 이동시키기 시작
+    /// 외부에서 호출하여 리프트를 위로 이동시키기 시작 (외부 호출용)
     /// </summary>
     public void ActivateLiftUp()
     {
         isMovingUp = true;
         isMovingDown = false;
+        audioSource?.PlayOneShot(liftSound);
     }
 
+    /// <summary>
+    /// 리프트를 아래로 이동 시작 (외부 호출용)
+    /// </summary>
     public void ActivateLiftDown()
     {
         isMovingUp = false;
         isMovingDown = true;
+        audioSource?.PlayOneShot(liftSound);
     }
 
 }

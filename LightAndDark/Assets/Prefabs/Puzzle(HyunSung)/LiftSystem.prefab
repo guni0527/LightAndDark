@@ -45,6 +45,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: LiftController
       objectReference: {fileID: 0}
+    - target: {fileID: 2113914283252715240, guid: c6681bffa5fadb04b835594fb8fc4148, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2113914283252715240, guid: c6681bffa5fadb04b835594fb8fc4148, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 2113914283252715240, guid: c6681bffa5fadb04b835594fb8fc4148, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.0555
+      objectReference: {fileID: 0}
+    - target: {fileID: 2113914283252715240, guid: c6681bffa5fadb04b835594fb8fc4148, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1389
+      objectReference: {fileID: 0}
     - target: {fileID: 3840433023233326446, guid: c6681bffa5fadb04b835594fb8fc4148, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.26
@@ -127,12 +143,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8610987240430999558}
     - target: {fileID: 6730383754443323177, guid: 96d206fc8a407ab41960c01d8645d897, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730383754443323177, guid: 96d206fc8a407ab41960c01d8645d897, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6730383754443323177, guid: 96d206fc8a407ab41960c01d8645d897, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.74
+      value: 5.4579
       objectReference: {fileID: 0}
     - target: {fileID: 6730383754443323177, guid: 96d206fc8a407ab41960c01d8645d897, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.6
+      value: -3.0271
       objectReference: {fileID: 0}
     - target: {fileID: 6730383754443323177, guid: 96d206fc8a407ab41960c01d8645d897, type: 3}
       propertyPath: m_LocalPosition.z

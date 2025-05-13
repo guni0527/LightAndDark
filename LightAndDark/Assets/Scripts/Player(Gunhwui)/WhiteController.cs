@@ -73,7 +73,9 @@ public class WhiteController : MonoBehaviour
     {
         foreach (ContactPoint2D contact in collision.contacts)
         {
-            if (contact.normal.y > 0.5f)
+            // 기존: contact.normal.y > 0.5f
+            // 개선: Y축 위 방향 + X축 밀착일 경우 필터링
+            if (contact.normal.y > 0.5f && Mathf.Abs(contact.normal.x) < 0.5f)
             {
                 isGrounded = true;
                 break;
@@ -83,7 +85,10 @@ public class WhiteController : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        isGrounded = false;
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isGrounded = false;
+        }
     }
 
     public void LightDie()//죽었을때 LightZoneTrigger.cs에 호출받음
