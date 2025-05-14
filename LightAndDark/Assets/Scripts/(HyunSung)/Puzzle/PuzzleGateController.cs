@@ -16,6 +16,8 @@ public class PuzzleGateController : MonoBehaviour
     [Header("필요한 스위치 타입들")]
     [SerializeField] private List<TriggerType> requiredTriggers;
 
+    [SerializeField] private int nextStageIndex = 1;
+
     private bool isOpened = false;
     private Vector3 closedPosition;
     private Vector3 openedPosition;
@@ -112,5 +114,9 @@ public class PuzzleGateController : MonoBehaviour
             yield return null;
         }
         transform.position = openedPosition;
+
+        yield return new WaitForSeconds(1.5f);
+
+        StageManager.Instance.LoadStage(nextStageIndex);
     }
 }

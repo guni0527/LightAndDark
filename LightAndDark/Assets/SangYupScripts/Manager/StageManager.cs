@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 프리펩 기반 스테이지 관리 매니저 (씬 로드 제거)
+/// </summary>
 public class StageManager : MonoBehaviour
 {
     public static StageManager Instance { get; private set; }
 
     [SerializeField] private int currentStageIndex; // 현재 스테이지 인덱스
-    public int CurrentStageIndex => currentStageIndex; // 외부에서 읽기 전용으로 접근
+    [SerializeField] private List<GameObject> stagePrefabs;
+    [SerializeField] private Transform stageParemt;
 
-    [SerializeField] private List<StageData> stageList; // 스테이지 데이터 목록
+    public int CurrentStageIndex => currentStageIndex;
 
-    public List<StageData> StageList => stageList;
+    private GameObject currentStageInstance;
 
     private void Awake()
     {
@@ -27,59 +31,32 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 스테이지 로드 (프리팹 Instantiate)
+    /// </summary>
+    /// <param name="index"></param>
     public void LoadStage(int index) // 지정된 인덱스의 스테이지를 로드
     {
-        if (!StageUnlockSystem.Instance.IsStageUnlocked(index))
-        {
-            Debug.LogWarning($"스테이지 {index}는 해금되지 않았습니다.");
-            return;
-        }
-
-        if (index < 0 || index >= stageList.Count)
+        if (index < 0 || index >= stagePrefabs.Count)
         {
             Debug.LogError("잘못된 스테이지 인덱스");
             return;
         }
 
-        string sceneToLoad = stageList[index].sceneName;
-
-        if (SceneManager.GetActiveScene().name == sceneToLoad)
+        if (currentStageInstance != null)
         {
-            Debug.Log("현재 씬과 동일하여 로드 생략");
-            return;
+            Destroy(currentStageInstance);
         }
 
+        currentStageInstance = Instantiate(stagePrefabs[index], stageParemt);
         currentStageIndex = index;
-        StageData data = stageList[index];
-        Debug.Log($"스테이지 {index} 시작 : {data.sceneName}");
 
-        SceneManager.LoadScene(data.sceneName); // 해당 스테이지 씬 로드
+        Debug.Log($"스테이지 {index + 1} 프리펩 로드 완료");
     }
 
-    public void UnlockNextStage() // 다음 스테이지 언락 및 로드
+    public void LoadNextStage()
     {
-        if (currentStageIndex + 1 < stageList.Count)
-        {
-            currentStageIndex++;
-
-            StageUnlockSystem.Instance.UnlockStage(currentStageIndex); // StageUnlockSystem에 저장 (PlayerPrefs에도 저장됨)
-
-            LoadStage(currentStageIndex); // 다음 스테이지 로드
-        }
-        else
-        {
-            Debug.Log("모든 스테이지 클리어");
-            GameManager.Instance.SetGameState(GameManager.GameState.StageClear); // 게임 클리어
-        }
-    }
-
-    public string GetCurrentStageSceneName() // 현재 스테이지의 씬 이름 반환
-    {
-        if (currentStageIndex < 0 || currentStageIndex >= stageList.Count)
-        {
-            Debug.LogError("현재 스테이지 인덱스가 잘못되었습니다.");
-            return "";
-        }
-        return stageList[currentStageIndex].sceneName;
+        int nextIndex = (currentStageIndex + 1) % stagePrefabs.Count;
+        LoadStage(nextIndex);
     }
 }
