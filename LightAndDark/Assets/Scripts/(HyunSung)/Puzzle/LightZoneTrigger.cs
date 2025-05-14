@@ -20,24 +20,24 @@ public class LightZoneTrigger : MonoBehaviour
     {
         if (other.CompareTag("LightPlayer"))
         {
-            WhiteController white = other.GetComponent<WhiteController>();
-            if (white != null)
+           PlayerState state = other.GetComponent<PlayerState>();
+            if (state != null)
             {
-                white.isInLightZone = true;
+                state.IsInLightZone = true;
             }
         }
 
         if (other.CompareTag("DarkPlayer"))
         {
             Debug.Log("어둠이 빛에 닿아 사망");
-            DarkController dark = other.GetComponent<DarkController>();
-            if (dark != null)
+            PlayerState state = other.GetComponent<PlayerState>();
+            if (state != null)
             {
-                dark.DarkDie();
+                state.Die();
             }
             else
             {
-                Debug.LogWarning("DarkController 컴포넌트를 찾을수없음.");
+                Debug.LogWarning("PlayerState 컴포넌트를 찾을수없음.");
             }
         }
     }
@@ -52,16 +52,15 @@ public class LightZoneTrigger : MonoBehaviour
     {
         if (other.CompareTag("LightPlayer"))
         {
-            Debug.Log("빛 캐릭터가 전등 범위를 벗어나 사망");
-            WhiteController white = other.GetComponent<WhiteController>();
-            if(white != null)
+            PlayerState state = other.GetComponent<PlayerState>();
+            if(state != null)
             {
-                white.isInLightZone = false;
+                state.IsInLightZone = false;
 
-                if (!IsInAnyLightZone(white))
+                if (!IsInAnyLightZone(state))
                 {
                     Debug.Log("빛 캐릭터가 완전한 어둠으로 나가 사망");
-                    white.LightDie();
+                    state.Die();
                 }
             }
         }
@@ -72,9 +71,9 @@ public class LightZoneTrigger : MonoBehaviour
     /// </summary>
     /// <param name="white">체크할 WhiteController 인스턴스</param>
     /// <returns>하나 이상의 LightZone과 겹치면 true, 없으면 false</returns>
-    private bool IsInAnyLightZone(WhiteController white)
+    private bool IsInAnyLightZone(PlayerState player)
     {
-        Collider2D[] colliders = Physics2D.OverlapPointAll(white.transform.position);
+        Collider2D[] colliders = Physics2D.OverlapPointAll(player.transform.position);
         foreach (var col in colliders)
         {
             if (col.CompareTag("LightZone"))
