@@ -56,14 +56,15 @@ public class GameManager : MonoBehaviour
 
     private void HandleGameOver() // 캐릭터 사망 처리 함수
     {
-        DarkController dark = FindObjectOfType<DarkController>();
-        WhiteController white = FindObjectOfType<WhiteController>();
+        PlayerState[] players = FindObjectsOfType<PlayerState>();
 
-        if (dark != null)
-            dark.DarkDie(); // Dark 캐릭터 사망 처리
-
-        if (white != null)
-            white.LightDie(); // White 캐릭터 사망 처리
+        foreach (var player in players)
+        {
+            if (!player.IsDead)
+            {
+                player.Die();
+            }
+        }
     }
 
     public void RetryStage()
