@@ -14,6 +14,8 @@ public class WhiteController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isGrounded;
     private bool isDead = false;
+    private float move = 0f;
+    private bool jumpRequested = false;
 
     public bool isInLightZone = false;
 
@@ -27,31 +29,19 @@ public class WhiteController : MonoBehaviour
     void Update()
     {
         if (isDead)
-            return;
-
-        
-
-        if (Input.GetKeyDown(KeyCode.K))
         {
-            Debug.Log("K키 눌림!");
-            LightDie();
+            return;
         }
-        float move = 0f;
+
+        move = 0f;
         //키 입력       키 바꿀때 여기 수정   
         if (Input.GetKey(KeyCode.A)) move = -1f; //x값 줄여줌으로써 왼쪽으로 감
         if (Input.GetKey(KeyCode.D)) move = 1f; //x값 늘려줌으로써 오른쪽으로 감
 
-        rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
-
-        //방향 전환 할때 그림이 움직이도록 해줌
-        if (move != 0)
-            spriteRenderer.flipX = move < 0;
-
         //점프를 담당해줌
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            isGrounded = false;
+            jumpRequested = true;
         }
 
         //땅에 닿았거나 아닐때 모션이랑 걸어다닐때 나오는 모션 해주는거 //여기가 진심 wrkxdma
@@ -66,6 +56,32 @@ public class WhiteController : MonoBehaviour
         else
         {
             spriteRenderer.sprite = idleSprite;
+        }
+
+        //방향 전환 할때 그림이 움직이도록 해줌
+        if (move != 0)
+            spriteRenderer.flipX = move < 0;
+    }
+
+    private void FixedUpdate()
+    {
+        if (isDead)
+        {
+            return;
+        }
+
+        rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
+
+        if (jumpRequested)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            isGrounded = false;
+            jumpRequested = false;
+        }
+
+        if (rb.velocity.y < -0.1f && isGrounded)
+        {
+            isGrounded = false;
         }
     }
 

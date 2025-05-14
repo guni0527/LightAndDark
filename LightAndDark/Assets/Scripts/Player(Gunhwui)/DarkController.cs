@@ -71,6 +71,11 @@ public class DarkController : MonoBehaviour
         }
 
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+
+        if (rb.velocity.y < -0.1f && isGrounded)
+        {
+            isGrounded = false;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
