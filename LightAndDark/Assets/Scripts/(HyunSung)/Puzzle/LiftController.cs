@@ -46,7 +46,6 @@ public class LiftController : MonoBehaviour
     {
         isMovingUp = true;
         isMovingDown = false;
-        audioSource?.PlayOneShot(liftSound);
     }
 
     /// <summary>
@@ -56,7 +55,6 @@ public class LiftController : MonoBehaviour
     {
         isMovingUp = false;
         isMovingDown = true;
-        audioSource?.PlayOneShot(liftSound);
     }
 
 }
