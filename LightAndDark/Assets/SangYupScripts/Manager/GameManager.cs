@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
+
     public enum GameState
     {
         Playing,        // 현재 스테이지 플레이 중
@@ -12,8 +14,6 @@ public class GameManager : MonoBehaviour
         StageFail,      // 실패 (시간 초과, 캐릭터 사망 등)
         GameOver        // 캐릭터 사망 후 연출 포함 게임 오버 상태
     }
-
-    public static GameManager Instance {  get; private set; }
 
     public GameState CurrentState { get; private set; } = GameState.Playing; // 현재 게임 상태
 
@@ -30,14 +30,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        if (SceneManager.GetActiveScene().name == "SangYupScene")
-        {
-
-        }
-    }
-
     public void SetGameState(GameState newState) // 게임 상태 설정
     {
         CurrentState = newState;
@@ -49,7 +41,7 @@ public class GameManager : MonoBehaviour
 
             case GameState.StageClear:
                 Debug.Log("스테이지 클리어");
-                StageManager.Instance.UnlockNextStage(); // 다음 스테이지 해금
+                StageManager.Instance.LoadNextStage(); // 다음 스테이지 해금
                 break;
             case GameState.StageFail:
                 Debug.Log("스테이지 실패");
@@ -77,8 +69,6 @@ public class GameManager : MonoBehaviour
     public void RetryStage()
     {
         int currentIndex = StageManager.Instance.CurrentStageIndex;
-        string currentSceneName = StageManager.Instance.GetCurrentStageSceneName(); // 현재 씬 이름 가져오기
-
-        SceneManager.LoadScene(currentSceneName); // 해당 씬 다시 로드 (재시작)
+        StageManager.Instance.LoadStage(currentIndex); // 현재 씬 이름 가져오기
     }    
 }

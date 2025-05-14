@@ -23,8 +23,16 @@ public class StageClearCondition : MonoBehaviour
 
     private void Start() // 현재 스테이지 정보에서 제한 시간 가져오기
     {
-        int index = StageManager.Instance.CurrentStageIndex;
-        timeLimit = StageManager.Instance.StageList[StageManager.Instance.CurrentStageIndex].timeLimit;
+        StageInfo stageInfo = FindObjectOfType<StageInfo>();
+
+        if (stageInfo != null)
+        {
+            timeLimit = stageInfo.timeLimit;
+        }
+        else
+        {
+            Debug.LogWarning("StageInfo를 찾을 수 없습니다. 기본 시간 사용");
+        }
     }
 
     private void Update()
