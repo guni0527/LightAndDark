@@ -22,7 +22,6 @@ public class LiftLeverHandler : MonoBehaviour
     public void PullLeverDown()
     {
         leverAnimator.SetTrigger("LiftLever_Down");
-        audioSource?.PlayOneShot(leverPullSound);
     }
 
     /// <summary>
@@ -31,6 +30,5 @@ public class LiftLeverHandler : MonoBehaviour
     public void PullLeverUp()
     {        
         leverAnimator.SetTrigger("LiftLever_Up");
-        audioSource?.PlayOneShot(leverPullSound);
     }
 }

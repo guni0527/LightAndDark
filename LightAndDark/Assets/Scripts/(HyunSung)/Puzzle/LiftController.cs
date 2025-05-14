@@ -14,10 +14,6 @@ public class LiftController : MonoBehaviour
     [SerializeField] private Transform bottomPoint;
     [SerializeField] private float moveSpeed = 2f;
 
-    [Header("사운드")]
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip liftSound;
-
     private bool isMovingUp = false;
     private bool isMovingDown = false;
 
@@ -46,7 +42,6 @@ public class LiftController : MonoBehaviour
     {
         isMovingUp = true;
         isMovingDown = false;
-        audioSource?.PlayOneShot(liftSound);
     }
 
     /// <summary>
@@ -56,7 +51,6 @@ public class LiftController : MonoBehaviour
     {
         isMovingUp = false;
         isMovingDown = true;
-        audioSource?.PlayOneShot(liftSound);
     }
 
 }
