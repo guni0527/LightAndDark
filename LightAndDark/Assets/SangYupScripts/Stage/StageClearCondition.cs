@@ -11,7 +11,7 @@ public class StageClearCondition : MonoBehaviour
     private bool isCleared = false;          // 중복 처리 방지용
 
     private float timer = 0f;                // 제한시간 측정용 타이머
-    private float timeLimit = 60f;           // 스테이지 제한 시간 (StageData에서 받아옴)
+    private float timeLimit = 120f;           // 스테이지 제한 시간 (StageData에서 받아옴)
 
     private void Awake()
     {
