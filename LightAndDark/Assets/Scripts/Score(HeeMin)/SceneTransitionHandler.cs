@@ -2,40 +2,55 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 ///
-/// 필요한 씬을 불러올 수 있는 함수를 만들어두는 SceneTransitionHandler
+/// 필요한 화면을 불러올 수 있는 함수를 만들어두고 저장해두는 SceneTransitionHandler
 ///
 public class SceneTransitionHandler : MonoBehaviour
 {
-    StageData stageData;
-    private string sceneName;
+    public GameObject MainScreen;
+    public GameObject ClearScreen;
+    public GameObject CreditScreen;
+    public GameObject SelectStageScreen;
 
-    public void Init(StageData data)
+    public void ShowMainScreen() // 다른 창 끄고 메인 화면만 출력하기
     {
-        stageData = data;
-        sceneName = data.sceneName;
+        if (MainScreen != null)
+        {
+            HideAllScreens();
+            MainScreen.SetActive(true);
+        }
+    }    
+
+    public void ShowCreditScreen() // 다른 창 끄고 크레딧 화면만 출력하기
+    {
+        if (CreditScreen != null)
+        {
+            HideAllScreens();
+            CreditScreen.SetActive(true);
+        }
     }
 
-    public void MainScene() // 메인 화면으로 이동하기
+    public void ShowSelectStageScreen() // 다른 창 끄고 스테이지 선택 화면만 출력하기
     {
-        SceneManager.LoadScene("MainScene");
+        HideAllScreens();
+        if (SelectStageScreen != null)
+        {
+            SelectStageScreen.SetActive(true);
+        }
     }
 
-    public void StageSetScene() // 스테이지 선택 화면으로 이동하기
+    public void ShowClearScreen() // 클리어 화면 출력하기
     {
-        SceneManager.LoadScene("StageSetScene");
+        if (ClearScreen != null)
+        {
+            ClearScreen.SetActive(true);
+        }
     }
 
-
-    public void StageScene() // 지정된 스테이지로 이동하기
+    private void HideAllScreens() // 모든 창 끄기
     {
-        SceneManager.LoadScene(sceneName);
-    }
-
-    public void StageClearScene() // 스테이지 클리어 씬 이동하기
-    {
-        // 그런데 스테이지 클리어는 단순히 스테이지 창에서 이미지를 만들어두고
-        // 클리어하면 그 창을 활성화 하는 식으로 쓰는게 더 나을 수도 있을 듯 함.
-
-        SceneManager.LoadScene("StageClearScene");
+        MainScreen.SetActive(false);
+        ClearScreen.SetActive(false);
+        CreditScreen.SetActive(false);
+        SelectStageScreen.SetActive(false);
     }
 }
