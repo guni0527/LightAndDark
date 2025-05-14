@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 
+
+///
+/// 클리어 시 플레이어가 충족한 조건에 따라 점수를 계산해서 지급하는 ScoreManager
+///
 public class ScoreManager : MonoBehaviour
 {
     private StageData stageData;

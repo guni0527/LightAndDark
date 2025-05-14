@@ -1,8 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+///
+/// 필요한 씬을 불러올 수 있는 함수를 만들어두는 SceneTransitionHandler
+///
 public class SceneTransitionHandler : MonoBehaviour
 {
     StageData stageData;
