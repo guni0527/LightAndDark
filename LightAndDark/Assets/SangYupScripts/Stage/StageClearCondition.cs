@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StageClearCondition : MonoBehaviour
 {
+    private SceneTransitionHandler scenetransitionhandler;
+
     public static StageClearCondition Instance { get; private set; }
 
     private bool isLightPlayerReady = false; // Light 플레이어 도달 여부
@@ -66,6 +68,7 @@ public class StageClearCondition : MonoBehaviour
             isCleared = true;
             Debug.Log("스테이지 클리어");
             GameManager.Instance.SetGameState(GameManager.GameState.StageClear);
+            scenetransitionhandler.ShowClearScreen();
         }
     }
 }

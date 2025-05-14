@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 ///
 /// 필요한 화면을 불러올 수 있는 함수를 만들어두고 저장해두는 SceneTransitionHandler
@@ -10,6 +11,10 @@ public class SceneTransitionHandler : MonoBehaviour
     public GameObject ClearScreen;
     public GameObject CreditScreen;
     public GameObject SelectStageScreen;
+
+    public GameObject ScoreStar; // 결과창 3번째 별 이미지
+
+    private ScoreManager scoremanager;
 
     public void ShowMainScreen() // 다른 창 끄고 메인 화면만 출력하기
     {
@@ -49,6 +54,18 @@ public class SceneTransitionHandler : MonoBehaviour
         if (ClearScreen != null)
         {
             ClearScreen.SetActive(true);
+
+            if (ScoreStar != null)
+            {
+                if (scoremanager.Score <= 2)
+                {
+                    ScoreStar.SetActive(false); // 점수가 2 이하라면 마지막 별 별 하나 비활성화
+                }
+                else
+                {
+                    ScoreStar.SetActive(true); // 점수가 3 이상이라면 마지막 별 하나 활성화
+                }
+            }
         }
     }
 

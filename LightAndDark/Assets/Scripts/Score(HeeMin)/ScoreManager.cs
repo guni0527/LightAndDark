@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
 {
     private StageData stageData;
 
+    int currentPlayTime = 0;
     public void Init(StageData data)
     {
         stageData = data;
@@ -31,14 +32,9 @@ public class ScoreManager : MonoBehaviour
 
     public void AddTimeBonus() // 시간 내에 스테이지 클리어 시 지급되는 점수
     {
+        stageData.playTime = currentPlayTime;
+
         if (stageData != null && stageData.timeLimit >= stageData.playTime)
             Score += 1; 
     }
 }
-
-// 클리어 시점에 playTime값을 stageData에 갱신해주는 코드가 필요함.
-
-//stageData.playTime = currentPlayTime; // currentPlayTime = 현재 누적된 시간
-//scoreManager.Init(stageData);
-//scoreManager.StageClear();
-
