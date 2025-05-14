@@ -74,5 +74,16 @@ public class StageManager : MonoBehaviour
         {
             Debug.LogWarning("SelectStageUI가 연결되지 않았습니다.");
         }
+
+        var handler = FindObjectOfType<SceneTransitionHandler>();
+        if (handler != null)
+        {
+            handler.HideAllScreens();
+            Debug.Log("모든 UI 숨김 처리");
+        }
+        else
+        {
+            Debug.Log("ScreenTransitionHandler를 찾을 수 없습니다.");
+        }
     }
 }

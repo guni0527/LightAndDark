@@ -13,10 +13,16 @@ public class SceneTransitionHandler : MonoBehaviour
 
     public void ShowMainScreen() // 다른 창 끄고 메인 화면만 출력하기
     {
+        Debug.Log("메인 화면 호출 시도");
+
         if (MainScreen != null)
         {
             HideAllScreens();
             MainScreen.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("MainScreen 연결 안됨");
         }
     }    
 
@@ -46,7 +52,7 @@ public class SceneTransitionHandler : MonoBehaviour
         }
     }
 
-    private void HideAllScreens() // 모든 창 끄기
+    public void HideAllScreens() // 모든 창 끄기
     {
         MainScreen.SetActive(false);
         ClearScreen.SetActive(false);
