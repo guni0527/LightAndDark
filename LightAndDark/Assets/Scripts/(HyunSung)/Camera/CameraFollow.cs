@@ -12,6 +12,9 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Vector3 offset;
     [SerializeField] private float smoothSpeed = 5f;
 
+    /// <summary>
+    /// 매 프레임 마지막에 호출되어 카메라 위치를 대상 기준으로 부드럽게 이동 처리
+    /// </summary>
     private void LateUpdate()
     {
         if (target == null)
