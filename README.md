@@ -11,6 +11,7 @@ TeamProject
 🧭 20조 트러블슈팅 정리 (Troubleshooting Log)
 
 🚨 [통합 트러블슈팅 로그]
+
 ✅ [1] 캐릭터 생존 판정 오류 (김건휘)
 
 문제점
