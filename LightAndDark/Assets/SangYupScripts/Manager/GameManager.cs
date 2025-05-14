@@ -71,5 +71,6 @@ public class GameManager : MonoBehaviour
     {
         int currentIndex = StageManager.Instance.CurrentStageIndex;
         StageManager.Instance.LoadStage(currentIndex); // 현재 씬 이름 가져오기
-    }    
+    }
+
 }

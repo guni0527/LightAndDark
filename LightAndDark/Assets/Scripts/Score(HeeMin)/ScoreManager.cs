@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
 {
     private StageData stageData;
 
+    int currentPlayTime = 0;
     public void Init(StageData data)
     {
         stageData = data;
@@ -19,33 +20,21 @@ public class ScoreManager : MonoBehaviour
     {
         AddClearScore();
         AddTimeBonus();
-        AddItemBonus();
         Debug.Log($"총 점수는 {Score}점 입니다.");
     }
 
     public void AddClearScore() // 스테이지 클리어 시 지급되는 점수
     {
-        Score += 1; 
+        Score += 2; 
         //스테이지 클리어 시 호출되므로 조건은 넣지 않음
     }
 
 
     public void AddTimeBonus() // 시간 내에 스테이지 클리어 시 지급되는 점수
     {
+        stageData.playTime = currentPlayTime;
+
         if (stageData != null && stageData.timeLimit >= stageData.playTime)
             Score += 1; 
     }
-
-    public void AddItemBonus() // 맵에서 아이템을 획득했을 때 지급되는 점수
-    {
-        //IF (아이템을 먹어서 그 스테이지 아이템 획득 bool 값이 true라면)
-        Score += 1;
-    }
 }
-
-// 클리어 시점에 playTime값을 stageData에 갱신해주는 코드가 필요함.
-
-//stageData.playTime = currentPlayTime; // currentPlayTime = 현재 누적된 시간
-//scoreManager.Init(stageData);
-//scoreManager.StageClear();
-

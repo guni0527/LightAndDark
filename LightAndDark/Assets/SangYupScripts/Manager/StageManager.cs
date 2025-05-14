@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class StageManager : MonoBehaviour
 {
     public static StageManager Instance { get; private set; }
+    public GameObject selectStageUI;
 
     [SerializeField] private int currentStageIndex; // 현재 스테이지 인덱스
     [SerializeField] private List<GameObject> stagePrefabs;
@@ -58,5 +59,31 @@ public class StageManager : MonoBehaviour
     {
         int nextIndex = (currentStageIndex + 1) % stagePrefabs.Count;
         LoadStage(nextIndex);
+    }
+
+    public void OnClickLoadStage(int index)
+    {
+        LoadStage(index);
+
+        if (selectStageUI != null)
+        {
+            selectStageUI.SetActive(false);
+            Debug.Log("SelectStage UI 비활성화 완료");
+        }
+        else
+        {
+            Debug.LogWarning("SelectStageUI가 연결되지 않았습니다.");
+        }
+
+        var handler = FindObjectOfType<SceneTransitionHandler>();
+        if (handler != null)
+        {
+            handler.HideAllScreens();
+            Debug.Log("모든 UI 숨김 처리");
+        }
+        else
+        {
+            Debug.Log("ScreenTransitionHandler를 찾을 수 없습니다.");
+        }
     }
 }

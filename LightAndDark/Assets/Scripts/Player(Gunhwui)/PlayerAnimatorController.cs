@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// PlayerAnimatorController
+/// - PlayerInputHandler와 PlayerState를 기반으로 스프라이트 애니메이션 처리
+/// - 이동/점프/사망 상태에 따른 SpriteRenderer 스프라이트 변경
+/// </summary>
 [RequireComponent(typeof(PlayerState))]
 public class PlayerAnimatorController : MonoBehaviour
 {
