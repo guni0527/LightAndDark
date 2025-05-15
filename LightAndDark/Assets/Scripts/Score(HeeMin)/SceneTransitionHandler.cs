@@ -1,6 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
+using TMPro;
 
 ///
 /// 필요한 화면을 불러올 수 있는 함수를 만들어두고 저장해두는 SceneTransitionHandler
@@ -11,6 +10,7 @@ public class SceneTransitionHandler : MonoBehaviour
     public GameObject ClearScreen;
     public GameObject CreditScreen;
     public GameObject SelectStageScreen;
+    public TMP_Text timeText;
 
     public GameObject ScoreStar; // 결과창 3번째 별 이미지
 
@@ -75,5 +75,11 @@ public class SceneTransitionHandler : MonoBehaviour
         ClearScreen.SetActive(false);
         CreditScreen.SetActive(false);
         SelectStageScreen.SetActive(false);
+    }
+
+    public void ShowClearTime(float playTime)
+    {
+        // 소수점 한 자리까지만 표시
+        timeText.text = $"클리어 시간 : {playTime}초";
     }
 }

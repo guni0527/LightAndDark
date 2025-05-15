@@ -37,4 +37,9 @@ public class ScoreManager : MonoBehaviour
         if (stageData != null && stageData.timeLimit >= stageData.playTime)
             Score += 1; 
     }
+
+    public void SetPlayTime(float playTime) // 초 단위로 시간을 저장하는 기능
+    {
+        currentPlayTime = (int)playTime;
+    }
 }
