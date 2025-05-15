@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameObject retryUI;
+
     public static GameManager Instance { get; private set; }
 
     public enum GameState
@@ -65,10 +67,26 @@ public class GameManager : MonoBehaviour
                 player.Die();
             }
         }
+
+        if (retryUI)
+        {
+            retryUI.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("retryUI가 GameManager에 연결되지 않았습니다.");
+        }
     }
 
     public void RetryStage()
     {
+        if (retryUI != null)
+        {
+            retryUI.SetActive(false);
+        }
+
+        SetGameState(GameState.Playing);
+
         int currentIndex = StageManager.Instance.CurrentStageIndex;
         StageManager.Instance.LoadStage(currentIndex); // 현재 씬 이름 가져오기
     }

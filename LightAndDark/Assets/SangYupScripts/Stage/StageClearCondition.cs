@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageClearCondition : MonoBehaviour
 {
     private SceneTransitionHandler scenetransitionhandler;
+    private ScoreManager scoreManager;
 
     public static StageClearCondition Instance { get; private set; }
 
@@ -26,6 +28,7 @@ public class StageClearCondition : MonoBehaviour
     private void Start() // 현재 스테이지 정보에서 제한 시간 가져오기
     {
         StageInfo stageInfo = FindObjectOfType<StageInfo>();
+        scoreManager = FindObjectOfType<ScoreManager>();
 
         if (stageInfo != null)
         {
@@ -67,6 +70,19 @@ public class StageClearCondition : MonoBehaviour
         {
             isCleared = true;
             Debug.Log("스테이지 클리어");
+
+            if (scoreManager != null)
+            {
+                scoreManager.SetPlayTime(timer);
+                scoreManager.StageClear();
+            }
+
+            SceneTransitionHandler clearUI = FindObjectOfType<SceneTransitionHandler>();
+            if (clearUI != null)
+            {
+                clearUI.ShowClearTime(timer);
+            }
+
             GameManager.Instance.SetGameState(GameManager.GameState.StageClear);
             scenetransitionhandler.ShowClearScreen();
         }
