@@ -10,9 +10,16 @@ public class PlayerState : MonoBehaviour
 
     public void Die()
     {
+        if (IsDead)
+        {
+            return;
+        }
+
         IsDead = true;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Debug.Log($"{gameObject.name} 사망 처리");
+
+        GameManager.Instance.SetGameState(GameManager.GameState.GameOver);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

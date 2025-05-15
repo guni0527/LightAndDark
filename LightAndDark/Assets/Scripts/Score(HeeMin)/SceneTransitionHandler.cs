@@ -11,10 +11,10 @@ public class SceneTransitionHandler : MonoBehaviour
     public GameObject CreditScreen;
     public GameObject SelectStageScreen;
     public TMP_Text timeText;
-
     public GameObject ScoreStar; // 결과창 3번째 별 이미지
-
     private ScoreManager scoremanager;
+    public GameObject RetryScreen;
+
 
     public void ShowMainScreen() // 다른 창 끄고 메인 화면만 출력하기
     {
@@ -75,6 +75,11 @@ public class SceneTransitionHandler : MonoBehaviour
         ClearScreen.SetActive(false);
         CreditScreen.SetActive(false);
         SelectStageScreen.SetActive(false);
+
+        if (RetryScreen != null)
+        {
+            RetryScreen.SetActive(false);
+        }
     }
 
     public void ShowClearTime(float playTime)
