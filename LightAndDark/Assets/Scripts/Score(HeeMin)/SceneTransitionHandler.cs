@@ -10,6 +10,7 @@ public class SceneTransitionHandler : MonoBehaviour
     public GameObject ClearScreen;
     public GameObject CreditScreen;
     public GameObject SelectStageScreen;
+    public GameObject RetryScreen;
 
     public void ShowMainScreen() // 다른 창 끄고 메인 화면만 출력하기
     {
@@ -58,5 +59,10 @@ public class SceneTransitionHandler : MonoBehaviour
         ClearScreen.SetActive(false);
         CreditScreen.SetActive(false);
         SelectStageScreen.SetActive(false);
+
+        if (RetryScreen != null)
+        {
+            RetryScreen.SetActive(false);
+        }
     }
 }
